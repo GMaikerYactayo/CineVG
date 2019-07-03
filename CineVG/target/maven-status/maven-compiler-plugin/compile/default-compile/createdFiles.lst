@@ -1,8 +1,3 @@
-model\Personal.class
-services\Service.class
-dao\LoginImpl.class
 dao\Conexion.class
 dao\ICRUD.class
-controller\LoginC.class
-controller\PersonalC.class
-dao\PersonalImpl.class
+services\Encriptar.class

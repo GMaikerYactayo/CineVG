@@ -3,6 +3,7 @@ package dao;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 
@@ -11,20 +12,17 @@ public class Conexion {
     public static Connection cnx = null;
     
     public static Connection conectar() throws  Exception{
-        InputStream inputStream = 
-                Conexion.class.getClassLoader().getResourceAsStream("properties/db.properties");
-        Properties properties = new Properties();
         try {
-            properties.load(inputStream);
-            String user = properties.getProperty("user");
-            String pwd = properties.getProperty("pwd");
-            String driver = properties.getProperty("driver");
-            String url = properties.getProperty("url");
+            String url = "jdbc:sqlserver://34.73.201.76:1433;databaseName=CineVG";//Nombre del Usuario de la base de datos
+            String pwd = "DevDB2019"; //User07-20199
+            String user= "DevDB";  // driver de sql
+            String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"; // la ip d de la bass datos cloud
             Class.forName(driver).newInstance();
-            cnx = DriverManager.getConnection(url, user, pwd);            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Error de conexión, revise xfa");
+            cnx = DriverManager.getConnection(url, user, pwd);
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error de conexión, revise xfa");
             System.out.println("error de conexion " + e.getMessage());
+            throw e;
         }
         return cnx;
     }
