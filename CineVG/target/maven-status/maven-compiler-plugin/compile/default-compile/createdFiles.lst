@@ -1,3 +1,4 @@
 dao\Conexion.class
 dao\ICRUD.class
+modelo\Cliente.class
 services\Encriptar.class

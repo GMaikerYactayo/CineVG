@@ -1,45 +1,44 @@
 package dao;
 
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
-import javax.swing.JOptionPane;
 
 public class Conexion {
-  
-    public static Connection cnx = null;
-    
-    public static Connection conectar() throws  Exception{
+
+    private Connection cn;
+
+    public void conectar() {
         try {
-            String url = "jdbc:sqlserver://34.73.201.76:1433;databaseName=CineVG";//Nombre del Usuario de la base de datos
-            String pwd = "DevDB2019"; //User07-20199
-            String user= "DevDB";  // driver de sql
-            String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"; // la ip d de la bass datos cloud
-            Class.forName(driver).newInstance();
-            cnx = DriverManager.getConnection(url, user, pwd);
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error de conexión, revise xfa");
-            System.out.println("error de conexion " + e.getMessage());
-            throw e;
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            cn = DriverManager.getConnection("jdbc:sqlserver://34.73.201.76:1433;databaseName=CineVG", "DevDB", "DevDB2019");
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("Error: " + e);
         }
-        return cnx;
     }
     
-    public void cerrar() throws Exception{
-        if(cnx !=null){
-            cnx.close();
+    public void Cerrar() throws SQLException {
+        if (cn != null) {
+            if (cn.isClosed() == false) {
+                cn.close();
+            }
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        conectar();
-        if(cnx!=null){
-            System.out.println("esta abierta, jojolete");
-        }else{
-            System.out.println("esta cerradita, fijate el driver, conexión, etc....monse");
+    public static void main(String[] args) {
+        Conexion dao = new Conexion();
+        dao.conectar();
+        if (dao.getCn() != null) {
+            System.out.println("Conectado");
         }
     }
-    
+
+    public Connection getCn() {
+        return cn;
+    }
+
+    public void setCn(Connection cn) {
+        this.cn = cn;
+    }
+
 }
