@@ -12,7 +12,15 @@
         <h:form id="agregarPersona">
             <p:panelGrid columns="4">
                 <p:outputLabel value="Persona"/>
-                <p:inputText value="#"/>
+                <p:inputText value="#{personaC.personaM.NOMPER}"/>
+                <p:outputLabel value="Persona"/>
+                <p:inputText value="#{personaC.personaM.APEPER}"/>
+                <p:outputLabel value="Persona"/>
+                <p:inputText value="#{personaC.personaM.DNIPER}"/>
+                <p:outputLabel value="Persona"/>
+                <p:inputText value="#{personaC.personaM.USUPER}"/>
+                <p:outputLabel value="Persona"/>
+                <p:inputText value="#{personaC.personaM.PSWPER}"/>
             </p:panelGrid>
         </h:form>
     </h:body>

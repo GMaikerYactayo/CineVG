@@ -18,13 +18,15 @@ public class PersonaImpl extends Conexion implements ICRUD<Persona>{
     public void registrar(Persona per) throws Exception {
         this.conectar();
         try {
-            String sql = "insert into persona.persona (NOMPER,APEPER,DNIPER,USUPER,PSWPER) values (?,?,?,?,?)";
+            String sql = "insert into persona.persona (NOMPER,APEPER,DNIPER,USUPER,PSWPER,SEXPER,FECNACPER) values (?,?,?,?,?,?,?)";
             PreparedStatement ps = getCn().prepareStatement(sql);
             ps.setString(1, per.getNOMPER());
             ps.setString(2, per.getAPEPER());
             ps.setInt(3, per.getDNIPER());
             ps.setString(4, per.getUSUPER());
             ps.setString(5, per.getPSWPER());
+            ps.setString(6,per.getSEXPER());
+            ps.setDate(7,new java.sql.Date(per.getFECNACPER().getTime()));
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error: " + e);

@@ -51,4 +51,22 @@ public class PersonaC implements Serializable{
     public void limpiar(){
         personaM = new Persona();
     }
+
+    public Persona getPersonaM() {
+        return personaM;
+    }
+
+    public void setPersonaM(Persona personaM) {
+        this.personaM = personaM;
+    }
+
+    public List<Persona> getPerlist() {
+        return perlist;
+    }
+
+    public void setPerlist(List<Persona> perlist) {
+        this.perlist = perlist;
+    }
+    
+    
 }

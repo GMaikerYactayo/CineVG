@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.Date;
+
 public class Persona {
 
     private String IDPER;
@@ -8,6 +10,8 @@ public class Persona {
     private int DNIPER;
     private String USUPER;
     private String PSWPER;
+    private String SEXPER;
+    private Date FECNACPER;
 
     public String getIDPER() {
         return IDPER;
@@ -55,6 +59,22 @@ public class Persona {
 
     public void setPSWPER(String PSWPER) {
         this.PSWPER = PSWPER;
+    }
+
+    public String getSEXPER() {
+        return SEXPER;
+    }
+
+    public void setSEXPER(String SEXPER) {
+        this.SEXPER = SEXPER;
+    }
+
+    public Date getFECNACPER() {
+        return FECNACPER;
+    }
+
+    public void setFECNACPER(Date FECNACPER) {
+        this.FECNACPER = FECNACPER;
     }
 
     
