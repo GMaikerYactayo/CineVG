@@ -1,4 +1,11 @@
+modelo\Pelicula.class
+control\CarteleraC.class
 dao\Conexion.class
 dao\ICRUD.class
-modelo\Cliente.class
+modelo\Persona.class
+dao\PeliculaImpl.class
 services\Encriptar.class
+control\PersonaC.class
+dao\CarteleraImpl.class
+modelo\Cartelera.class
+dao\PersonaImpl.class

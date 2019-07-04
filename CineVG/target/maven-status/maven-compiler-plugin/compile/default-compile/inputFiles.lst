@@ -1,4 +1,11 @@
-C:\Users\Ctorres\Documents\NetBeansProjects\CineVG\CineVG\src\main\java\dao\ICRUD.java
-C:\Users\Ctorres\Documents\NetBeansProjects\CineVG\CineVG\src\main\java\modelo\Cliente.java
-C:\Users\Ctorres\Documents\NetBeansProjects\CineVG\CineVG\src\main\java\dao\Conexion.java
-C:\Users\Ctorres\Documents\NetBeansProjects\CineVG\CineVG\src\main\java\services\Encriptar.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva carpeta\CineVG\CineVG\src\main\java\control\CarteleraC.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva carpeta\CineVG\CineVG\src\main\java\modelo\Pelicula.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva carpeta\CineVG\CineVG\src\main\java\dao\PeliculaImpl.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva carpeta\CineVG\CineVG\src\main\java\modelo\Persona.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva carpeta\CineVG\CineVG\src\main\java\dao\Conexion.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva carpeta\CineVG\CineVG\src\main\java\modelo\Cartelera.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva carpeta\CineVG\CineVG\src\main\java\dao\CarteleraImpl.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva carpeta\CineVG\CineVG\src\main\java\control\PersonaC.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva carpeta\CineVG\CineVG\src\main\java\dao\PersonaImpl.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva carpeta\CineVG\CineVG\src\main\java\dao\ICRUD.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva carpeta\CineVG\CineVG\src\main\java\services\Encriptar.java
