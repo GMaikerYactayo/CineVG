@@ -11,6 +11,7 @@ public class Pelicula {
     private String NOMCOMPEL;
     private String SUBPEL;
     private String IDIOMA;
+    
 
     public int getIDPEL() {
         return IDPEL;
