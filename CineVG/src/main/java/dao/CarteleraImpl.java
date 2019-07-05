@@ -14,15 +14,14 @@ public class CarteleraImpl extends Conexion implements ICRUD<Cartelera>{
     public void registrar(Cartelera cartelera) throws Exception {
         this.conectar();
         try {
-            String sql = "insert into ASIGNACION.CARTELERA (IDPEL,SALPEL,FECHINIPEL,FECHFINPEL,PRECCAR,ESTCAR) "
-                    + "values (?,?,?,?,?,?)";
+            String sql = "insert into CARTELERA (PRECAR,HORCAR,FECCAR,IDPEL,ESTCAR) "
+                    + "values (?,?,?,?,?)";
             PreparedStatement ps = getCn().prepareStatement(sql);
-            ps.setString(1, cartelera.getIDPEL());
-            ps.setString(2, cartelera.getSALPEL());
-            ps.setString(3, cartelera.getFECHINIPEL());
-            ps.setString(4, cartelera.getFECHFINPEL());
-            ps.setString(5, cartelera.getPRECCAR());
-            ps.setString(6, cartelera.getESTCAR());
+            ps.setString(1, cartelera.getPRECAR());
+            ps.setString(2, cartelera.getHORCAR());
+            ps.setString(3, cartelera.getFECCAR());
+            ps.setString(4, cartelera.getIDPEL());
+            ps.setString(5, "A");
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error: " + e);
@@ -36,15 +35,14 @@ public class CarteleraImpl extends Conexion implements ICRUD<Cartelera>{
     public void modificar(Cartelera cartelera) throws Exception {
         try {
             this.conectar();
-            String sql = "update ASIGNACION.CARTELERA set IDPEL=?,SALPEL=?,FECHINIPEL=?,FECHFINPEL=?,PRECCAR=?,ESTCAR=? where IDCAR=?";
+            String sql = "update CARTELERA set PRECAR=?,HORCAR=?,FECCAR=?,IDPEL=?,ESTCAR=? where IDCAR=?";
             PreparedStatement ps = this.getCn().prepareStatement(sql);
-            ps.setString(1, cartelera.getIDPEL());
-            ps.setString(2, cartelera.getSALPEL());
-            ps.setString(3, cartelera.getFECHINIPEL());
-            ps.setString(4, cartelera.getFECHFINPEL());
-            ps.setString(5, cartelera.getPRECCAR());
-            ps.setString(6, cartelera.getESTCAR());
-            ps.setString(7, cartelera.getIDCAR());
+            ps.setString(1, cartelera.getPRECAR());
+            ps.setString(2, cartelera.getHORCAR());
+            ps.setString(3, cartelera.getFECCAR());
+            ps.setString(4, cartelera.getIDPEL());
+            ps.setString(5, cartelera.getESTCAR());
+            ps.setString(6, cartelera.getIDCAR());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -57,7 +55,7 @@ public class CarteleraImpl extends Conexion implements ICRUD<Cartelera>{
     public void eliminar(Cartelera cartelera) throws Exception {
         try {
             this.conectar();
-            String sql = "delete from ASIGNACION.CARTELERA where IDCAR=?";
+            String sql = "delete from CARTELERA where IDCAR=?";
             PreparedStatement ps = this.getCn().prepareCall(sql);
             ps.setString(1, cartelera.getIDCAR());
             ps.executeUpdate();
@@ -75,17 +73,17 @@ public class CarteleraImpl extends Conexion implements ICRUD<Cartelera>{
         Cartelera car;
         try {
             this.conectar();
-            String sql = "select * from ASIGNACION.CARTELERA";
+            String sql = "SELECT * FROM VW_CARTELERA WHERE ESTCAR='A'";
             listado = new ArrayList();
             Statement st = this.getCn().createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 car = new Cartelera();
                 car.setIDCAR(rs.getString("IDCAR"));
+                car.setHORCAR(rs.getString("HORCAR"));
+                car.setFECCAR(rs.getString("FECCAR"));
                 car.setIDPEL(rs.getString("IDPEL"));
-                car.setFECHINIPEL(rs.getString("FECHINIPEL"));
-                car.setFECHFINPEL(rs.getString("FECHFINPEL"));
-                car.setPRECCAR(rs.getString("PRECCAR"));
+                car.setPRECAR(rs.getString("PRECAR"));
                 car.setESTCAR(rs.getString("ESTCAR"));
                 listado.add(car);
             }
@@ -97,6 +95,43 @@ public class CarteleraImpl extends Conexion implements ICRUD<Cartelera>{
             this.Cerrar();
         }
         return listado;
+    }
+    
+    public String obtenerCodigoPelicula(String Pelicula) throws SQLException, Exception {
+        this.conectar();
+        ResultSet rs;
+        try {
+            String sql = "SELECT IDPEL FROM PELICULA WHERE NOMPEL LIKE ?;";
+            PreparedStatement ps = this.getCn().prepareCall(sql);
+            ps.setString(1, Pelicula);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getString("IDPEL");
+            }
+            return null;
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+    public List<String> autocompletePelicula(String Consulta) throws SQLException {
+        this.conectar();
+        ResultSet rs;
+        List<String> Lista;
+        try {
+            String sql = "select top 10 NOMPEL AS PELICULA from PELICULA WHERE NOMPEL LIKE ?";
+            PreparedStatement ps = this.getCn().prepareCall(sql);
+            ps.setString(1, "%" + Consulta + "%");
+            Lista = new ArrayList<>();
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Lista.add(rs.getString("PELICULA"));
+            }
+            return Lista;
+        } catch (SQLException e) {
+            throw e;
+        }
+
     }
 
     @Override

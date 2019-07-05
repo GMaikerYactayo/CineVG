@@ -9,23 +9,21 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
+        
         <p:growl autoUpdate="true" showDetail="true" id="messages" />
         <center>
             <h:form id="formIns">
                 <h1 style="margin-top:0">Registrar cartelera</h1>
                 <p:panelGrid columns="4">
                     <p:outputLabel value="Pelicula"/>
-                    <p:inputText value="#{carteleraC.cartelera.IDPEL}" maxlength="50" required="true" requiredMessage=""/>
-                    <p:outputLabel value="Sala"/>
-                    <p:inputText value="#{carteleraC.cartelera.SALPEL}" maxlength="50" required="true" requiredMessage=""/>
-                    <p:outputLabel value="Fecha inicio"/>
-                    <p:inputText value="#{carteleraC.cartelera.FECHINIPEL}" maxlength="11" required="true" requiredMessage=""/>
-                    <p:outputLabel value="Fecha final"/>
-                    <p:inputText value="#{carteleraC.cartelera.FECHFINPEL}" maxlength="11" required="true" requiredMessage=""/>
+                    <p:autoComplete  value="#{carteleraC.cartelera.IDPEL}" completeMethod="#{carteleraC.completeTextPelicula}" required="true" requiredMessage="Se necesita la pelicula"/>
+                    <p:outputLabel value="Hora"/>
+                    <p:inputText value="#{carteleraC.cartelera.HORCAR}" maxlength="50" required="true" requiredMessage="Se necesita la hora"/>
+                    <p:outputLabel value="Fecha"   />
+                    <p:calendar id="button" value="#{carteleraC.fechaFormulario}"  showOn="button" navigator="true" pattern="dd/MMM/yyyy" 
+                                required="true" style="width: 400px" requiredMessage="Se requiere la fecha"/>
                     <p:outputLabel value="Precio"/>
-                    <p:inputText value="#{carteleraC.cartelera.PRECCAR}" maxlength="11" required="true" requiredMessage=""/>
-                    <p:outputLabel value="Estado"/>
-                    <p:inputText value="#{carteleraC.cartelera.ESTCAR}" maxlength="11" required="true" requiredMessage=""/>
+                    <p:inputText value="#{carteleraC.cartelera.PRECAR}" maxlength="11" required="true" requiredMessage="Se nesecita el precio"/>
                 </p:panelGrid>
                 <p:commandButton value="Registrar" actionListener="#{carteleraC.registrar()}" update="formIns :form:dtTable"/> 
             </h:form>
@@ -44,39 +42,31 @@
                          rowKey="#{lista.IDPEL}"
                          rows="6" 
                          style="margin-bottom:20px">
-
+                
+                <p:autoUpdate />
+                
                 <f:facet name="header">
                     CARTELERA
                 </f:facet>
 
-                <p:column headerText="Pelicula" filterBy="#{lista.IDPEL}" filterMatchMode="contains" style="width: 110px">
+                <p:column headerText="Pelicula" filterBy="#{lista.IDPEL}" filterMatchMode="contains">
                     <center>
                         <h:outputText value="#{lista.IDPEL}" />
                     </center>
                 </p:column>
-                <p:column headerText="Sala"  filterBy="#{lista.SALPEL}" filterMatchMode="contains">
+                <p:column headerText="Hora"  filterBy="#{lista.HORCAR}" filterMatchMode="contains">
                     <center>
-                        <h:outputText value="#{lista.SALPEL}" />
+                        <h:outputText value="#{lista.HORCAR}" />
                     </center>
                 </p:column>
-                <p:column headerText="Fecha inicio" >
+                <p:column headerText="Fecha" >
                     <center>
-                        <h:outputText value="#{lista.FECHINIPEL}" />
-                    </center>
-                </p:column>
-                <p:column headerText="Fecha final" >
-                    <center>
-                        <h:outputText value="#{lista.FECHFINPEL}" />
+                        <h:outputText value="#{lista.FECCAR}" />
                     </center>
                 </p:column>
                 <p:column headerText="Precio" >
                     <center>
-                        <h:outputText value="#{lista.PRECCAR}" />
-                    </center>
-                </p:column>
-                <p:column headerText="Estado" >
-                    <center>
-                        <h:outputText value="#{lista.ESTCAR}" />
+                        <h:outputText value="#{lista.PRECAR}" />
                     </center>
                 </p:column>
 
@@ -97,17 +87,14 @@
             <h:form>
                 <p:panelGrid columns="4">
                     <p:outputLabel value="Pelicula"/>
-                    <p:inputText value="#{carteleraC.cartelera.IDPEL}" maxlength="50" required="true" requiredMessage=""/>
-                    <p:outputLabel value="Sala"/>
-                    <p:inputText value="#{carteleraC.cartelera.SALPEL}" maxlength="50" required="true" requiredMessage=""/>
-                    <p:outputLabel value="Fecha inicio"/>
-                    <p:inputText value="#{carteleraC.cartelera.FECHINIPEL}" maxlength="11" required="true" requiredMessage=""/>
-                    <p:outputLabel value="Fecha final"/>
-                    <p:inputText value="#{carteleraC.cartelera.FECHFINPEL}" maxlength="11" required="true" requiredMessage=""/>
+                    <p:autoComplete  value="#{carteleraC.cartelera.IDPEL}" completeMethod="#{carteleraC.completeTextPelicula}" required="true" requiredMessage="Se necesita la pelicula"/>
+                    <p:outputLabel value="Hora"/>
+                    <p:inputText value="#{carteleraC.cartelera.HORCAR}" maxlength="50" required="true" requiredMessage="Se necesita la hora"/>
+                    <p:outputLabel value="Fecha"   />
+                    <p:calendar id="button" value="#{carteleraC.fechaFormulario}"  showOn="button" navigator="true" pattern="dd/MMM/yyyy" 
+                                required="true" style="width: 400px" requiredMessage="Se requiere la fecha"/>
                     <p:outputLabel value="Precio"/>
-                    <p:inputText value="#{carteleraC.cartelera.PRECCAR}" maxlength="11" required="true" requiredMessage=""/>
-                    <p:outputLabel value="Estado"/>
-                    <p:inputText value="#{carteleraC.cartelera.ESTCAR}" maxlength="11" required="true" requiredMessage=""/>
+                    <p:inputText value="#{carteleraC.cartelera.PRECAR}" maxlength="11" required="true" requiredMessage="Se nesecita el precio"/>
                 </p:panelGrid>
                 <p:commandButton value="Actualizar" actionListener="#{carteleraC.modificar()}"
                                  update=":form :messages" oncomplete="PF('wdlgDatos').hide();">
