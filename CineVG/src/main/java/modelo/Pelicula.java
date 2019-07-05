@@ -3,21 +3,22 @@ package modelo;
 
 public class Pelicula {
 
-
-    private int IDPEL;
+    private String IDPEL;
     private String NOMPEL;
     private String GENPEL;
-    private String RESPEL;
-    private String NOMCOMPEL;
-    private String SUBPEL;
-    private String IDIOMA;
-    
+    private String TIPPEL;
+    private String LENPEL;
+    private String DURPEL;
+    private String HORPEL;
+    private String FECPEL;
+    private String ESTPEL;
+    private String FOTPEL;
 
-    public int getIDPEL() {
+    public String getIDPEL() {
         return IDPEL;
     }
 
-    public void setIDPEL(int IDPEL) {
+    public void setIDPEL(String IDPEL) {
         this.IDPEL = IDPEL;
     }
 
@@ -37,36 +38,62 @@ public class Pelicula {
         this.GENPEL = GENPEL;
     }
 
-    public String getRESPEL() {
-        return RESPEL;
+    public String getTIPPEL() {
+        return TIPPEL;
     }
 
-    public void setRESPEL(String RESPEL) {
-        this.RESPEL = RESPEL;
+    public void setTIPPEL(String TIPPEL) {
+        this.TIPPEL = TIPPEL;
     }
 
-    public String getNOMCOMPEL() {
-        return NOMCOMPEL;
+    public String getLENPEL() {
+        return LENPEL;
     }
 
-    public void setNOMCOMPEL(String NOMCOMPEL) {
-        this.NOMCOMPEL = NOMCOMPEL;
+    public void setLENPEL(String LENPEL) {
+        this.LENPEL = LENPEL;
     }
 
-    public String getSUBPEL() {
-        return SUBPEL;
+    public String getDURPEL() {
+        return DURPEL;
     }
 
-    public void setSUBPEL(String SUBPEL) {
-        this.SUBPEL = SUBPEL;
+    public void setDURPEL(String DURPEL) {
+        this.DURPEL = DURPEL;
     }
 
-    public String getIDIOMA() {
-        return IDIOMA;
+    public String getHORPEL() {
+        return HORPEL;
     }
 
-    public void setIDIOMA(String IDIOMA) {
-        this.IDIOMA = IDIOMA;
+    public void setHORPEL(String HORPEL) {
+        this.HORPEL = HORPEL;
     }
-   
+
+    public String getFECPEL() {
+        return FECPEL;
+    }
+
+    public void setFECPEL(String FECPEL) {
+        this.FECPEL = FECPEL;
+    }
+
+    public String getESTPEL() {
+        return ESTPEL;
+    }
+
+    public void setESTPEL(String ESTPEL) {
+        this.ESTPEL = ESTPEL;
+    }
+
+    public String getFOTPEL() {
+        return FOTPEL;
+    }
+
+    public void setFOTPEL(String FOTPEL) {
+        this.FOTPEL = FOTPEL;
+    }
+
+
+ 
 }
