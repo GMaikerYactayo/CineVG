@@ -7,39 +7,179 @@
     <h:head>
         <title>Personal</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </h:head>
-    <p:growl id="growl" showDetail="true" sticky="true"/>
+    </h:head>   
     <h:body>
-        <h:form id="agregarCliente">
-            <p:accordionPanel>
-                <p:tab title="REGISTRAR CLIENTE">
-                    <div class="ui-fluid">
-                        <p:panelGrid columns="4"
-                                     columnClasses="ui-g-12 ui-md-2,ui-g-12 ui-md-4,ui-g-12 ui-md-2,ui-g-12 ui-md-4" 
-                                     layout="grid" 
-                                     styleClass="ui-panelgrid-blank ui-fluid">
+        <ui:composition template="../plantilla/Plantilla.xhtml">
+            <ui:define name="vista">
+                <p:growl id="growl" showDetail="true" sticky="true">
+                    <p:autoUpdate/>
+                </p:growl>
+                <h:form id="agregarCliente">
+                    <p:accordionPanel>
+                        <p:tab title="REGISTRAR CLIENTE">
+                            <div class="ui-fluid">
+                                <p:panelGrid columns="4"
+                                             columnClasses="ui-g-12 ui-md-2,ui-g-12 ui-md-4,ui-g-12 ui-md-2,ui-g-12 ui-md-4" 
+                                             layout="grid" 
+                                             styleClass="ui-panelgrid-blank ui-fluid">
+                                    <h:outputLabel for="nombre" value="NOMBRE"/>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText id="nombre" value="#{ClienteC.persona.NOMCLI}" 
+                                                     placeholder="INGRESAR NOMBRES" 
+                                                     required="true"
+                                                     requiredMessage="SE REQUIERE NOMBRE">
+                                            <p:keyFilter regEx="/[a-z ]/i"/> 
+                                        </p:inputText>
+                                    </h:panelGroup>
+
+                                    <h:outputLabel for="apellido" value="APELLIDO"/>
+                                    <h:panelGroup styleClass="md-inputfield">
+                                        <p:inputText id="apellido" value="#{ClienteC.persona.APECLI}" 
+                                                     placeholder="INGRESAR APELLIDOS" 
+                                                     required="true"
+                                                     requiredMessage="SE REQUIERE APELLIDO">
+                                            <p:keyFilter regEx="/[a-z ]/i"/> 
+                                        </p:inputText>
+                                    </h:panelGroup>
+
+                                    <h:outputLabel for="sexo" value="SEXO"/>
+                                    <p:selectOneRadio id="sexo" value="#{ClienteC.persona.SEXCLI}" 
+                                                      required="true" 
+                                                      requiredMessage="SE REQUIERE EL SEXO">
+                                        <f:selectItem itemLabel="MASCULINO" itemValue="M"/>
+                                        <f:selectItem itemLabel="FEMENINO" itemValue="F"/>
+                                    </p:selectOneRadio>
+
+                                    <h:outputLabel value="FECHA DE NACIMIENTO"/>
+                                    <p:calendar value="#{ClienteC.persona.NACCLI}" 
+                                                locale="es" 
+                                                navigator="true"
+                                                pattern="dd-MMMM-yyyy"
+                                                yearRange="-100:+0"
+                                                readonlyInput="true"/>
+                                </p:panelGrid>
+                                <br/>
+                                <p:commandButton value="REGISTRAR" 
+                                                 actionListener="#{ClienteC.registrar()}" 
+                                                 update=":agregarCliente :ListCli:cliente :growl" />
+                            </div>
+                        </p:tab>
+                    </p:accordionPanel>
+                </h:form>
+
+                <br/>
+                <h:form id="estado">
+                    <p:commandButton value="ACTIVOS" 
+                                     id="btnActivo"
+                                     actionListener="#{ClienteC.listar('A')}" 
+                                     update=":estado :ListCli:cliente"
+                                     oncomplete="PF('ListaTable').clearFilters()"/>
+
+                    <p:commandButton value="INACTIVOS"
+                                     id="btnInactivo"
+                                     actionListener="#{ClienteC.listar('I')}" 
+                                     update=":estado :ListCli:cliente"
+                                     oncomplete="PF('ListaTable').clearFilters()"/>
+                    <p:blockUI block="estado" trigger="btnInactivo btnActivo" />
+                </h:form>
+
+                <h:form id="ListCli">
+                    <p:dataTable id="cliente"
+                                 value="#{ClienteC.listper}"
+                                 widgetVar="ListaTable" 
+                                 var="cliente"
+                                 rowKey="#{cliente.IDCLI}"
+                                 filteredValue="#{ClienteC.listper}"
+                                 selection="#{ClienteC.personaEdit}"
+                                 selectionMode="single"
+                                 paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                 editable = "true"
+                                 rows = "10"
+                                 paginator="true"
+                                 style="margin-top:20px" 
+                                 reflow="true">
+
+                        <f:facet name="header">
+                            LISTA DE CLIENTES
+                        </f:facet>
+                        <f:facet name="header">
+                            <div style="float:right;padding-top: 5px;">
+                                <h:commandLink value="REPORTE" actionListener="#{ClienteC.REPORTECLIENTE(idcli)}">
+                                    <p:graphicImage url="../../recursos/images/favicon.png" width="35" title="Descargar Reporte"/>
+                                </h:commandLink>
+                            </div>
+                        </f:facet   >
+
+                        <p:column headerText="N°" width="50">
+                            <center>
+                                <h:outputText value="#{cliente.IDCLI}"/>
+                            </center>
+                        </p:column>
+
+                        <p:column headerText="NOMBRE COMPLETO" width="350">
+                            <h:outputText value="#{cliente.NOMCLI} #{cliente.APECLI}"/>
+                        </p:column>
+
+                        <p:column headerText="SEXO" width="150">
+                            <center>
+                                <h:outputText value="#{cliente.SEXCLI}">
+                                    <f:converter converterId="convertir"/>
+                                </h:outputText>
+                            </center>
+                        </p:column>
+
+                        <p:column headerText="FECHA DE NACIMIENTO" width="150">
+                            <center>
+                                <h:outputText value="#{cliente.NACCLI}">
+                                    <f:convertDateTime pattern="dd / MMMM /yyyy" locale="es"/>
+                                </h:outputText>
+                            </center>
+                        </p:column>
+                    </p:dataTable>
+
+
+                    <p:contextMenu for="cliente">
+                        <p:menuitem value="EDITAR" 
+                                    update="dlgCliente" 
+                                    oncomplete="PF('wdlgCliente').show()"/>
+
+                        <p:menuitem oncomplete="PF('ListaTable').clearFilters()"
+                                    value="INHABLITAR" 
+                                    update="cliente"
+                                    actionListener="#{ClienteC.invilitar(cliente)}"/>
+
+                        <p:menuitem oncomplete="PF('ListaTable').clearFilters()"
+                                    value="HABLITAR" 
+                                    update="cliente"
+                                    actionListener="#{ClienteC.habilitar(cliente)}"/>
+                    </p:contextMenu>
+
+                </h:form>
+
+                <p:dialog id="dlgCliente" 
+                          widgetVar="wdlgCliente" 
+                          closable="false" 
+                          modal="true" 
+                          header="EDITAR CLIENTE"
+                          showEffect="blind" 
+                          resizable="false" 
+                          draggable="false">
+                    <h:form>
+                        <p:panelGrid columns="4">
                             <h:outputLabel for="nombre" value="NOMBRE"/>
-                            <h:panelGroup styleClass="md-inputfield">
-                                <p:inputText id="nombre" value="#{ClienteC.persona.NOMCLI}" 
-                                             placeholder="INGRESAR NOMBRES" 
-                                             required="true"
-                                             requiredMessage="SE REQUIERE NOMBRE">
-                                    <p:keyFilter regEx="/[a-z ]/i"/> 
-                                </p:inputText>
-                            </h:panelGroup>
+                            <p:inputText id="nombre" value="#{ClienteC.personaEdit.NOMCLI}" 
+                                         placeholder="INGRESAR NOMBRES" 
+                                         required="true"
+                                         requiredMessage="SE REQUIERE NOMBRE"/>
 
                             <h:outputLabel for="apellido" value="APELLIDO"/>
-                            <h:panelGroup styleClass="md-inputfield">
-                                <p:inputText id="apellido" value="#{ClienteC.persona.APECLI}" 
-                                             placeholder="INGRESAR APELLIDOS" 
-                                             required="true"
-                                             requiredMessage="SE REQUIERE APELLIDO">
-                                    <p:keyFilter regEx="/[a-z ]/i"/> 
-                                </p:inputText>
-                            </h:panelGroup>
+                            <p:inputText id="apellido" value="#{ClienteC.personaEdit.APECLI}" 
+                                         placeholder="INGRESAR APELLIDOS" 
+                                         required="true"
+                                         requiredMessage="SE REQUIERE APELLIDO"/>
 
                             <h:outputLabel for="sexo" value="SEXO"/>
-                            <p:selectOneRadio id="sexo" value="#{ClienteC.persona.SEXCLI}" 
+                            <p:selectOneRadio id="sexo" value="#{ClienteC.personaEdit.SEXCLI}" 
                                               required="true" 
                                               requiredMessage="SE REQUIERE EL SEXO">
                                 <f:selectItem itemLabel="MASCULINO" itemValue="M"/>
@@ -47,168 +187,33 @@
                             </p:selectOneRadio>
 
                             <h:outputLabel value="FECHA DE NACIMIENTO"/>
-                            <p:calendar value="#{ClienteC.persona.NACCLI}" 
+                            <p:calendar value="#{ClienteC.personaEdit.NACCLI}" 
                                         locale="es" 
                                         navigator="true"
-                                        pattern="dd-MMMM-yyyy"
-                                        yearRange="-100:+0"
-                                        readonlyInput="true"/>
+                                        pattern="yyyy-MMM-dd"
+                                        yearRange="-100:+0"/>
                         </p:panelGrid>
-                        <br/>
-                        <p:commandButton value="REGISTRAR" 
-                                         actionListener="#{ClienteC.registrar()}" 
-                                         update=":agregarCliente :ListCli:cliente :growl" />
-                    </div>
-                </p:tab>
-            </p:accordionPanel>
-        </h:form>
-
-        <br/>
-        <h:form id="estado">
-            <p:commandButton value="ACTIVOS" 
-                             id="btnActivo"
-                             actionListener="#{ClienteC.listar('A')}" 
-                             update=":estado :ListCli:cliente"
-                             oncomplete="PF('ListaTable').clearFilters()"/>
-
-            <p:commandButton value="INACTIVOS"
-                             id="btnInactivo"
-                             actionListener="#{ClienteC.listar('I')}" 
-                             update=":estado :ListCli:cliente"
-                             oncomplete="PF('ListaTable').clearFilters()"/>
-            <p:blockUI block="estado" trigger="btnInactivo btnActivo" />
-        </h:form>
-
-        <h:form id="ListCli">
-            <p:dataTable id="cliente"
-                         value="#{ClienteC.listper}"
-                         widgetVar="ListaTable" 
-                         var="cliente"
-                         rowKey="#{cliente.IDCLI}"
-                         filteredValue="#{ClienteC.listper}"
-                         selection="#{ClienteC.personaEdit}"
-                         selectionMode="single"
-                         paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                         editable = "true"
-                         rows = "10"
-                         paginator="true"
-                         style="margin-top:20px" 
-                         reflow="true">
-
-                <f:facet name="header">
-                    LISTA DE CLIENTES
-                </f:facet>
-                <f:facet name="header">
-                    <div style="float:right;padding-top: 5px;">
-                        <h:commandLink value="REPORTE" actionListener="#{ClienteC.REPORTECLIENTE(idcli)}">
-                            <p:graphicImage url="../../recursos/images/favicon.png" width="35" title="Descargar Reporte"/>
-                        </h:commandLink>
-                    </div>
-                </f:facet   >
-
-                <p:column headerText="N°" width="50">
-                    <center>
-                        <h:outputText value="#{cliente.IDCLI}"/>
-                    </center>
-                </p:column>
-
-                <p:column headerText="NOMBRE COMPLETO" width="350">
-                    <h:outputText value="#{cliente.NOMCLI} #{cliente.APECLI}"/>
-                </p:column>
-
-                <p:column headerText="SEXO" width="150">
-                    <center>
-                        <h:outputText value="#{cliente.SEXCLI}">
-                            <f:converter converterId="convertir"/>
-                        </h:outputText>
-                    </center>
-                </p:column>
-
-                <p:column headerText="FECHA DE NACIMIENTO" width="150">
-                    <center>
-                        <h:outputText value="#{cliente.NACCLI}">
-                            <f:convertDateTime pattern="dd / MMMM /yyyy" locale="es"/>
-                        </h:outputText>
-                    </center>
-                </p:column>
-            </p:dataTable>
-
-
-            <p:contextMenu for="cliente">
-                <p:menuitem value="EDITAR" 
-                            update="dlgCliente" 
-                            oncomplete="PF('wdlgCliente').show()"/>
-
-                <p:menuitem oncomplete="PF('ListaTable').clearFilters()"
-                            value="INHABLITAR" 
-                            update="cliente"
-                            actionListener="#{ClienteC.invilitar(cliente)}"/>
-
-                <p:menuitem oncomplete="PF('ListaTable').clearFilters()"
-                            value="HABLITAR" 
-                            update="cliente"
-                            actionListener="#{ClienteC.habilitar(cliente)}"/>
-            </p:contextMenu>
-
-        </h:form>
-
-        <p:dialog id="dlgCliente" 
-                  widgetVar="wdlgCliente" 
-                  closable="false" 
-                  modal="true" 
-                  header="EDITAR CLIENTE"
-                  showEffect="blind" 
-                  resizable="false" 
-                  draggable="false">
-            <h:form>
-                <p:panelGrid columns="4">
-                    <h:outputLabel for="nombre" value="NOMBRE"/>
-                    <p:inputText id="nombre" value="#{ClienteC.personaEdit.NOMCLI}" 
-                                 placeholder="INGRESAR NOMBRES" 
-                                 required="true"
-                                 requiredMessage="SE REQUIERE NOMBRE"/>
-
-                    <h:outputLabel for="apellido" value="APELLIDO"/>
-                    <p:inputText id="apellido" value="#{ClienteC.personaEdit.APECLI}" 
-                                 placeholder="INGRESAR APELLIDOS" 
-                                 required="true"
-                                 requiredMessage="SE REQUIERE APELLIDO"/>
-
-                    <h:outputLabel for="sexo" value="SEXO"/>
-                    <p:selectOneRadio id="sexo" value="#{ClienteC.personaEdit.SEXCLI}" 
-                                      required="true" 
-                                      requiredMessage="SE REQUIERE EL SEXO">
-                        <f:selectItem itemLabel="MASCULINO" itemValue="M"/>
-                        <f:selectItem itemLabel="FEMENINO" itemValue="F"/>
-                    </p:selectOneRadio>
-
-                    <h:outputLabel value="FECHA DE NACIMIENTO"/>
-                    <p:calendar value="#{ClienteC.personaEdit.NACCLI}" 
-                                locale="es" 
-                                navigator="true"
-                                pattern="yyyy-MMM-dd"
-                                yearRange="-100:+0"/>
-                </p:panelGrid>
-                <div class="ui-g">
-                    <div class="ui-g-12 ui-md-6 ui-lg-6">
-                        <p:commandButton value="Actualizar" actionListener="#{ClienteC.modificar()}"
-                                         update=":ListCli :growl" oncomplete="if(args &amp;&amp; !args.validationFailed)PF('wdlgCliente').hide();">
-                            <p:tooltip trackMouse="true"/>
-                        </p:commandButton>
-                    </div>
-                    <div class="ui-g-12 ui-md-6 ui-lg-6">
-                        <p:commandButton value="Cancelar" 
-                                         immediate="true" 
-                                         update=":ListCli:cliente dlgCliente" 
-                                         process="@this" 
-                                         oncomplete="PF('wdlgCliente').hide();">
-                            <p:resetInput target="dlgCliente" />
-                        </p:commandButton>
-                    </div>
-                </div>
-            </h:form>
-        </p:dialog>
-
+                        <div class="ui-g">
+                            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                                <p:commandButton value="Actualizar" actionListener="#{ClienteC.modificar()}"
+                                                 update=":ListCli :growl" oncomplete="if(args &amp;&amp; !args.validationFailed)PF('wdlgCliente').hide();">
+                                    <p:tooltip trackMouse="true"/>
+                                </p:commandButton>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                                <p:commandButton value="Cancelar" 
+                                                 immediate="true" 
+                                                 update=":ListCli:cliente dlgCliente" 
+                                                 process="@this" 
+                                                 oncomplete="PF('wdlgCliente').hide();">
+                                    <p:resetInput target="dlgCliente" />
+                                </p:commandButton>
+                            </div>
+                        </div>
+                    </h:form>
+                </p:dialog>
+            </ui:define>
+        </ui:composition>
     </h:body>
     <script type="text/javascript">
         PrimeFaces.locales['es'] = {
