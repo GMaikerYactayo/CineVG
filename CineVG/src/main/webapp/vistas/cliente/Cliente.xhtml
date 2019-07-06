@@ -99,6 +99,13 @@
                 <f:facet name="header">
                     LISTA DE CLIENTES
                 </f:facet>
+                <f:facet name="header">
+                    <div style="float:right;padding-top: 5px;">
+                        <h:commandLink  actionListener="#{ClienteC.REPORTECLIENTE(idcli)}">
+                            <p:graphicImage url="../../recursos/images/favicon.png" width="35" title="Descargar Reporte"/>
+                        </h:commandLink>
+                    </div>
+                </f:facet   >
 
                 <p:column headerText="N°" width="50">
                     <center>
@@ -126,6 +133,7 @@
                     </center>
                 </p:column>
             </p:dataTable>
+
 
             <p:contextMenu for="cliente">
                 <p:menuitem value="EDITAR" 
