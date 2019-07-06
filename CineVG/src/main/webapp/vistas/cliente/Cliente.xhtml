@@ -26,15 +26,47 @@
                     <div class="col-md-12 grid-margin">
                         <div class="d-flex justify-content-between flex-wrap">
                             <div class="d-flex align-items-end flex-wrap">
-                                <div class="mr-md-3 mr-xl-5">
-                                    <h2>Registros de Clientes</h2>
-                                    <p class="mb-md-0">Listados de los Clientes Registrados</p>
-                                </div>
+                                
+                                <h:form id="agregarCliente">
+                                    <p:panelGrid columns="4">
+                                        <h:outputLabel for="nombre" value="NOMBRE"/>
+                                        <p:inputText id="nombre" value="#{ClienteC.persona.NOMCLI}" 
+                                                     placeholder="INGRESAR NOMBRES" 
+                                                     required="true"
+                                                     requiredMessage="SE REQUIERE NOMBRE">
+                                            <p:keyFilter regEx="/[a-z ]/i"/> 
+                                        </p:inputText>
 
+                                        <h:outputLabel for="apellido" value="APELLIDO"/>
+                                        <p:inputText id="apellido" value="#{ClienteC.persona.APECLI}" 
+                                                     placeholder="INGRESAR APELLIDOS" 
+                                                     required="true"
+                                                     requiredMessage="SE REQUIERE APELLIDO">
+                                            <p:keyFilter regEx="/[a-z ]/i"/> 
+                                        </p:inputText>
+
+                                        <h:outputLabel for="sexo" value="SEXO"/>
+                                        <p:selectOneRadio id="sexo" value="#{ClienteC.persona.SEXCLI}" 
+                                                          required="true" 
+                                                          requiredMessage="SE REQUIERE EL SEXO">
+                                            <f:selectItem itemLabel="MASCULINO" itemValue="M"/>
+                                            <f:selectItem itemLabel="FEMENINO" itemValue="F"/>
+                                        </p:selectOneRadio>
+
+                                        <h:outputLabel value="FECHA DE NACIMIENTO"/>
+                                        <p:calendar value="#{ClienteC.persona.NACCLI}" 
+                                                    locale="es" 
+                                                    navigator="true"
+                                                    pattern="dd-MMMM-yyyy"
+                                                    yearRange="-100:+0"
+                                                    readonlyInput="true"/>
+                                    </p:panelGrid>
+                                    <p:commandButton value="REGISTRAR" 
+                                                     actionListener="#{ClienteC.registrar()}" 
+                                                     update=" :ListCli:cliente :growl" />
+                                </h:form>
                             </div>
-                            <div class="d-flex justify-content-between align-items-end flex-wrap">
-                                <p:commandButton class="btn btn-primary mt-2 mt-xl-0" onclick="PF('wdlgAgregar').show();" value="Agregar Cliente"/>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -128,96 +160,9 @@
                 </p:panelGrid>
             </h:form>
         </p:dialog>
-        <p:dialog id="dlgAgregar" widgetVar="wdlgAgregar" >
-            <h:form id="agregarCliente">
-                <p:panelGrid columns="4">
-                    <h:outputLabel for="nombre" value="NOMBRE"/>
-                    <p:inputText id="nombre" value="#{ClienteC.persona.NOMCLI}" 
-                                 placeholder="INGRESAR NOMBRES" 
-                                 required="true"
-                                 requiredMessage="SE REQUIERE NOMBRE">
-                        <p:keyFilter regEx="/[a-z ]/i"/> 
-                    </p:inputText>
+        
 
-                    <h:outputLabel for="apellido" value="APELLIDO"/>
-                    <p:inputText id="apellido" value="#{ClienteC.persona.APECLI}" 
-                                 placeholder="INGRESAR APELLIDOS" 
-                                 required="true"
-                                 requiredMessage="SE REQUIERE APELLIDO">
-                        <p:keyFilter regEx="/[a-z ]/i"/> 
-                    </p:inputText>
-
-                    <h:outputLabel for="sexo" value="SEXO"/>
-                    <p:selectOneRadio id="sexo" value="#{ClienteC.persona.SEXCLI}" 
-                                      required="true" 
-                                      requiredMessage="SE REQUIERE EL SEXO">
-                        <f:selectItem itemLabel="MASCULINO" itemValue="M"/>
-                        <f:selectItem itemLabel="FEMENINO" itemValue="F"/>
-                    </p:selectOneRadio>
-
-                    <h:outputLabel value="FECHA DE NACIMIENTO"/>
-                    <p:calendar value="#{ClienteC.persona.NACCLI}" 
-                                locale="es" 
-                                navigator="true"
-                                pattern="dd-MMMM-yyyy"
-                                yearRange="-100:+0"
-                                readonlyInput="true"/>
-                </p:panelGrid>
-                <p:commandButton value="REGISTRAR" 
-                                 actionListener="#{ClienteC.registrar()}" 
-                                 update=":agregarCliente :ListCli:cliente :growl" />
-            </h:form>
-        </p:dialog>
-
-        <!-- plugins:js -->
-        <script src="../../recursos/vendors/base/vendor.bundle.base.js" type="text/javascript"></script>
-        <!-- endinject -->
-        <!-- Plugin js for this page-->
-        <script src="../../recursos/vendors/chart.js/Chart.min.js" type="text/javascript"></script>
-        <script src="../../recursos/vendors/datatables.net/jquery.dataTables.js" type="text/javascript"></script>
-        <script src="../../recursos/vendors/datatables.net-bs4/dataTables.bootstrap4.js" type="text/javascript"></script>
-        <!-- End plugin js for this page-->
-        <!-- inject:js -->
-        <script src="../../recursos/js/off-canvas.js" type="text/javascript"></script>
-        <script src="../../recursos/js/hoverable-collapse.js" type="text/javascript"></script>
-        <script src="../../recursos/js/template.js" type="text/javascript"></script>
-        <!-- endinject -->
-        <!-- Custom js for this page-->
-        <script src="../../recursos/js/dashboard.js" type="text/javascript"></script>
-        <script src="../../recursos/js/data-table.js" type="text/javascript"></script>
-        <script src="../../recursos/js/jquery.dataTables.js" type="text/javascript"></script>
-        <script src="../../recursos/js/dataTables.bootstrap4.js" type="text/javascript"></script>
-        <!-- End custom js for this page-->
-        <script type="text/javascript">
-                                    PrimeFaces.locales['es'] = {
-                                        closeText: 'Cerrar',
-                                        prevText: 'Anterior',
-                                        nextText: 'Siguiente',
-                                        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                                        monthNamesShort: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                                        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-                                        dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
-                                        dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-                                        weekHeader: 'Semana',
-                                        firstDay: 1,
-                                        isRTL: false,
-                                        showMonthAfterYear: false,
-                                        yearSuffix: '',
-                                        timeOnlyTitle: 'Sólo hora',
-                                        timeText: 'Tiempo',
-                                        hourText: 'Hora',
-                                        minuteText: 'Minuto',
-                                        secondText: 'Segundo',
-                                        currentText: 'Fecha actual',
-                                        ampm: false,
-                                        month: 'Mes',
-                                        week: 'Semana',
-                                        day: 'Día',
-                                        allDayText: 'Todo el día'
-                                    };
-
-        </script>
-
+        
         <script type="text/javascript">
             PrimeFaces.locales['es'] = {
                 closeText: 'Cerrar',
