@@ -1,11 +1,14 @@
 dao\SalaImpl.class
 modelo\Pelicula.class
 control\SalaC.class
+dao\VentaImpl.class
 control\CarteleraC.class
 modelo\Sala.class
+modelo\Venta.class
 control\PeliculaC.class
 control\LoginC.class
 modelo\Empleado.class
+control\VentaC.class
 dao\Login.class
 services\Session.class
 control\ClienteC.class

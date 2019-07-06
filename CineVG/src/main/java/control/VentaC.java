@@ -10,7 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import modelo.Venta;
 
-@Named(value = "salaC")
+@Named(value = "ventaC")
 @SessionScoped
 public class VentaC implements Serializable {
     List<Venta> lista;
