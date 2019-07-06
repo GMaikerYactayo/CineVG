@@ -31,7 +31,7 @@ public class LoginC implements Serializable {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("username", empleado);
                 switch (empleado.getTIPEMP()) {
                     case "1":
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("/DocVG/faces/vistas/template/Template.xhtml");
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("/CineVG/faces/vistas/cliente/Cliente.xhtml.");
                         break;
                     case "2":
                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "No eres un empleado >:v", "no lo intentes"));

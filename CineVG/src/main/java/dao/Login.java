@@ -12,7 +12,7 @@ public class Login extends Conexion {
         ResultSet rs;
         Empleado empleado = null;
         try {
-            String sql = "select NOMEMP, APEEMP, DNIEMP, DIREEMP, TIPMON, SEXEMP from MONITOR where USUEMP=? and PWDEMP=?";
+            String sql = "select NOMEMP, APEEMP, DNIEMP, DIREMP, TIPEMP, SEXEMP from EMPLEADO where USUEMP=? and PWDEMP=?";
             PreparedStatement ps = getCn().prepareStatement(sql);
             ps.setString(1, USUEMP);
             ps.setString(2, PWDEMP);

@@ -1,8 +1,11 @@
 package control;
 
+import Reportes.report;
 import dao.ClienteImpl;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -83,6 +86,17 @@ public class ClienteC implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "INAVILITACION COMPLETA", null));
         } catch (Exception e) {
+        }
+    }
+      public void REPORTECLIENTE(String idcli) throws Exception {
+        report reportCLIENTE = new report();
+        try {
+            Map<String, Object> parameters = new HashMap(); // Libro de parametros
+            parameters.put(null, idcli); //Insertamos un parametro
+            reportCLIENTE.exportarCLIENTE(parameters); //Pido exportar Reporte con los parametros
+//            report.exportarPDF2(parameters);
+        } catch (Exception e) {
+            throw e;
         }
     }
     
