@@ -21,13 +21,7 @@
             <version>2.2.13</version>
             <scope>provided</scope>
         </dependency>
-        
-<!--        <dependency>
-            <groupId>org.primefaces.themes</groupId>
-            <artifactId>all-themes</artifactId>
-            <version>1.0.10</version>
-        </dependency>-->
-        
+                
         <dependency>
             <groupId>com.sun.faces</groupId>
             <artifactId>jsf-impl</artifactId>

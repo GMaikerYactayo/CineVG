@@ -24,7 +24,7 @@ public class SalaC implements Serializable {
     public void init() {
         try {
             listar();
-        } catch (Exception ex) {
+        } catch (Exception e) {
             System.out.println("error");
         }
     }
