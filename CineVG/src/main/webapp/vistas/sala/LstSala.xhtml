@@ -6,13 +6,42 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Sala</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <link href="../../recursos/vendors/mdi/css/materialdesignicons.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../recursos/vendors/base/vendor.bundle.base.css" rel="stylesheet" type="text/css"/>
+        <!-- endinject -->
+        <!-- plugin css for this page -->
+        <link href="../../recursos/vendors/datatables.net-bs4/dataTables.bootstrap4.css" rel="stylesheet" type="text/css"/>
+        <!-- End plugin css for this page -->
+        <!-- inject:css -->
+        <link href="../../recursos/css/style.css" rel="stylesheet" type="text/css"/>
+        <!-- endinject -->
+        <link rel="shortcut icon" href="../../recursos/images/favicon.png" />
     </h:head>
     <h:body>
         <p:growl showDetail="true">
             <p:autoUpdate/>
         </p:growl>
-        <ui:include src="InsSala.xhtml"/>
+        <h:form>
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-md-12 grid-margin">
+                        <div class="d-flex justify-content-between flex-wrap">
+                            <div class="d-flex align-items-end flex-wrap">
+                                <div class="mr-md-3 mr-xl-5">
+                                    <h2>Registros de Salas</h2>
+                                    <p class="mb-md-0">Listados de las Salas Registradas</p>
+                                </div>
+
+                            </div>
+                            <div class="d-flex justify-content-between align-items-end flex-wrap">
+                                <p:commandButton class="btn btn-primary mt-2 mt-xl-0" onclick="PF('wdlgAgregarS').show();" value="Agregar Sala"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
         <h:form id="formListSala">
             <p:selectOneButton value="#{salaC.estado}" unselectable="false">
                 <p:ajax listener="#{salaC.listar()}" update="dtSala menuSala" event="change"/>
@@ -54,5 +83,94 @@
                 <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgEdit').hide();"/>
             </h:form>
         </p:dialog>
+        <p:dialog id="dlgAgregarS" widgetVar="wdlgAgregarS" >
+            <h:form id="formInsSala">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Numero"/>
+                    <p:spinner value="#{salaC.modelo.NUMSAL}" min="1"/>
+                    <p:outputLabel value="Capacidad"/>
+                    <p:spinner value="#{salaC.modelo.CAPSAL}" min="1"/>
+                    <p:commandButton value="Registrar" update="@form :formListSala:dtSala" actionListener="#{salaC.registrar}"/>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+        <!-- plugins:js -->
+        <script src="../../recursos/vendors/base/vendor.bundle.base.js" type="text/javascript"></script>
+        <!-- endinject -->
+        <!-- Plugin js for this page-->
+        <script src="../../recursos/vendors/chart.js/Chart.min.js" type="text/javascript"></script>
+        <script src="../../recursos/vendors/datatables.net/jquery.dataTables.js" type="text/javascript"></script>
+        <script src="../../recursos/vendors/datatables.net-bs4/dataTables.bootstrap4.js" type="text/javascript"></script>
+        <!-- End plugin js for this page-->
+        <!-- inject:js -->
+        <script src="../../recursos/js/off-canvas.js" type="text/javascript"></script>
+        <script src="../../recursos/js/hoverable-collapse.js" type="text/javascript"></script>
+        <script src="../../recursos/js/template.js" type="text/javascript"></script>
+        <!-- endinject -->
+        <!-- Custom js for this page-->
+        <script src="../../recursos/js/dashboard.js" type="text/javascript"></script>
+        <script src="../../recursos/js/data-table.js" type="text/javascript"></script>
+        <script src="../../recursos/js/jquery.dataTables.js" type="text/javascript"></script>
+        <script src="../../recursos/js/dataTables.bootstrap4.js" type="text/javascript"></script>
+        <!-- End custom js for this page-->
+        <script type="text/javascript">
+                                    PrimeFaces.locales['es'] = {
+                                        closeText: 'Cerrar',
+                                        prevText: 'Anterior',
+                                        nextText: 'Siguiente',
+                                        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                        monthNamesShort: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                                        dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                                        dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+                                        weekHeader: 'Semana',
+                                        firstDay: 1,
+                                        isRTL: false,
+                                        showMonthAfterYear: false,
+                                        yearSuffix: '',
+                                        timeOnlyTitle: 'Sólo hora',
+                                        timeText: 'Tiempo',
+                                        hourText: 'Hora',
+                                        minuteText: 'Minuto',
+                                        secondText: 'Segundo',
+                                        currentText: 'Fecha actual',
+                                        ampm: false,
+                                        month: 'Mes',
+                                        week: 'Semana',
+                                        day: 'Día',
+                                        allDayText: 'Todo el día'
+                                    };
+
+        </script>
+
+        <script type="text/javascript">
+            PrimeFaces.locales['es'] = {
+                closeText: 'Cerrar',
+                prevText: 'Anterior',
+                nextText: 'Siguiente',
+                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                monthNamesShort: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+                weekHeader: 'Semana',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: '',
+                timeOnlyTitle: 'Sólo hora',
+                timeText: 'Tiempo',
+                hourText: 'Hora',
+                minuteText: 'Minuto',
+                secondText: 'Segundo',
+                currentText: 'Fecha actual',
+                ampm: false,
+                month: 'Mes',
+                week: 'Semana',
+                day: 'Día',
+                allDayText: 'Todo el día'
+            };
+
+        </script>
     </h:body>
 </html>

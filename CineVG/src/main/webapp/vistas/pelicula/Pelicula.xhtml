@@ -1,11 +1,214 @@
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Pelicula</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <link href="../../recursos/vendors/mdi/css/materialdesignicons.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../recursos/vendors/base/vendor.bundle.base.css" rel="stylesheet" type="text/css"/>
+        <!-- endinject -->
+        <!-- plugin css for this page -->
+        <link href="../../recursos/vendors/datatables.net-bs4/dataTables.bootstrap4.css" rel="stylesheet" type="text/css"/>
+        <!-- End plugin css for this page -->
+        <!-- inject:css -->
+        <link href="../../recursos/css/style.css" rel="stylesheet" type="text/css"/>
+        <!-- endinject -->
+        <link rel="shortcut icon" href="../../recursos/images/favicon.png" />
     </head>
+    <p:growl id="growl" showDetail="true" sticky="true"/>
     <body>
-        <div>TODO write content</div>
-    </body>
+    <h:form>
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-md-12 grid-margin">
+                    <div class="d-flex justify-content-between flex-wrap">
+                        <div class="d-flex align-items-end flex-wrap">
+                            <div class="mr-md-3 mr-xl-5">
+                                <h2>Registros de Peliculas</h2>
+                                <p class="mb-md-0">Listados de las Peliculas Registradas</p>
+                            </div>
+
+                        </div>
+                        <div class="d-flex justify-content-between align-items-end flex-wrap">
+                            <p:commandButton class="btn btn-primary mt-2 mt-xl-0" onclick="PF('wdlgAgregarP').show();" value="Agregar Pelicula"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:form>
+
+
+
+    <div class="row">
+        <div class="col-md-12 stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-title">Lista de Peliculas</p>
+                    <div class="table-responsive">
+                        <h:form id="ListPel">
+                            <p:dataTable id="pelicula" class="table"
+                                         value="#{peliculaC.listadoPel}" 
+                                         var="pelicula"
+                                         rowKey="#{peliculaC.listadoPel}"
+                                         filteredValue="#{peliculaC.listadoPel}"
+                                         selection="#{peliculaC.listadoPel}"
+                                         selectionMode="single"
+                                         paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                         editable = "true"
+                                         rows = "10"
+                                         paginator="true" >
+
+                                <p:column headerText="N°">
+                                    <h:outputText value="#{pelicula.IDPEL}"/>
+                                </p:column>
+
+                                <p:column headerText="NOMBRE COMPLETO">
+                                    <h:outputText value="#{pelicula.NOMPEL}"/>
+                                </p:column>
+
+                                <p:column headerText="NOMBRE COMPLETO">
+                                    <h:outputText value="#{pelicula.TIPPEL}"/>
+                                </p:column>
+
+                                <p:column headerText="SEXO">
+                                    <h:outputText value="#{pelicula.DURPEL}"/>
+                                </p:column>
+
+                                <p:column headerText="FECHA DE NACIMIENTO">
+                                    <h:outputText value="#{pelicula.LENPEL}"/>
+                                </p:column>
+                            </p:dataTable>
+
+                            <p:contextMenu for="pelicula">
+                                <p:menuitem value="EDITAR"  icon="pi pi-search" oncomplete="PF('wdlgPelicula').show()"/>
+                                <p:menuitem value="INHABLITAR" update="pelicula" icon="pi pi-times" />
+                            </p:contextMenu>
+
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<p:dialog id="dlgAgregarP" widgetVar="wdlgAgregarP" >
+        <h:form id="agregarPelicula">
+            <p:panelGrid columns="4">
+                <h:outputLabel for="nombre" value="NOMBRE"/>
+                <p:inputText id="nombre" value="#{pelicula.NOMPEL}" 
+                             placeholder="INGRESAR NOMBRES" 
+                             required="true"
+                             requiredMessage="SE REQUIERE NOMBRE">
+                </p:inputText>
+
+                <h:outputLabel for="tipo" value="TIPO"/>
+                <p:inputText id="tipo" value="#{pelicula.TIPPEL}" 
+                             placeholder="INGRESAR APELLIDOS" 
+                             required="true"
+                             requiredMessage="SE REQUIERE APELLIDO">
+                </p:inputText>
+
+                <h:outputLabel for="duracion" value="DURACION"/>
+                <p:inputText id="duracion" value="#{pelicula.DURPEL}" 
+                             placeholder="INGRESAR APELLIDOS" 
+                             required="true"
+                             requiredMessage="SE REQUIERE APELLIDO">
+                </p:inputText>
+
+                <h:outputLabel for="idiosa" value="IDIOMA"/>
+                <p:inputText id="idioma" value="#{pelicula.LENPEL}" 
+                             placeholder="INGRESAR APELLIDOS" 
+                             required="true"
+                             requiredMessage="SE REQUIERE APELLIDO">
+                </p:inputText>
+            </p:panelGrid>
+            <p:commandButton value="REGISTRAR" 
+                             actionListener="#{peliculaC.registrar()}" 
+                             update=":agregarPelicula :ListPel:pelicula :growl" />
+        </h:form>
+    </p:dialog>
+
+    <!-- plugins:js -->
+    <script src="../../recursos/vendors/base/vendor.bundle.base.js" type="text/javascript"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <script src="../../recursos/vendors/chart.js/Chart.min.js" type="text/javascript"></script>
+    <script src="../../recursos/vendors/datatables.net/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="../../recursos/vendors/datatables.net-bs4/dataTables.bootstrap4.js" type="text/javascript"></script>
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="../../recursos/js/off-canvas.js" type="text/javascript"></script>
+    <script src="../../recursos/js/hoverable-collapse.js" type="text/javascript"></script>
+    <script src="../../recursos/js/template.js" type="text/javascript"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="../../recursos/js/dashboard.js" type="text/javascript"></script>
+    <script src="../../recursos/js/data-table.js" type="text/javascript"></script>
+    <script src="../../recursos/js/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="../../recursos/js/dataTables.bootstrap4.js" type="text/javascript"></script>
+    <!-- End custom js for this page-->
+    <script type="text/javascript">
+                                PrimeFaces.locales['es'] = {
+                                    closeText: 'Cerrar',
+                                    prevText: 'Anterior',
+                                    nextText: 'Siguiente',
+                                    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                    monthNamesShort: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                    dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                                    dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                                    dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+                                    weekHeader: 'Semana',
+                                    firstDay: 1,
+                                    isRTL: false,
+                                    showMonthAfterYear: false,
+                                    yearSuffix: '',
+                                    timeOnlyTitle: 'Sólo hora',
+                                    timeText: 'Tiempo',
+                                    hourText: 'Hora',
+                                    minuteText: 'Minuto',
+                                    secondText: 'Segundo',
+                                    currentText: 'Fecha actual',
+                                    ampm: false,
+                                    month: 'Mes',
+                                    week: 'Semana',
+                                    day: 'Día',
+                                    allDayText: 'Todo el día'
+                                };
+
+    </script>
+
+    <script type="text/javascript">
+        PrimeFaces.locales['es'] = {
+            closeText: 'Cerrar',
+            prevText: 'Anterior',
+            nextText: 'Siguiente',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+            dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+            weekHeader: 'Semana',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: '',
+            timeOnlyTitle: 'Sólo hora',
+            timeText: 'Tiempo',
+            hourText: 'Hora',
+            minuteText: 'Minuto',
+            secondText: 'Segundo',
+            currentText: 'Fecha actual',
+            ampm: false,
+            month: 'Mes',
+            week: 'Semana',
+            day: 'Día',
+            allDayText: 'Todo el día'
+        };
+
+    </script>
+</body>
 </html>

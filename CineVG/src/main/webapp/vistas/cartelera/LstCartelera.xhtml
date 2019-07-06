@@ -6,28 +6,39 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:fn="http://java.sun.com/jsp/jstl/functions">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Cartelera</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="../../recursos/vendors/mdi/css/materialdesignicons.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../recursos/vendors/base/vendor.bundle.base.css" rel="stylesheet" type="text/css"/>
+        <!-- endinject -->
+        <!-- plugin css for this page -->
+        <link href="../../recursos/vendors/datatables.net-bs4/dataTables.bootstrap4.css" rel="stylesheet" type="text/css"/>
+        <!-- End plugin css for this page -->
+        <!-- inject:css -->
+        <link href="../../recursos/css/style.css" rel="stylesheet" type="text/css"/>
+        <!-- endinject -->
     </h:head>
     <h:body>
-        
-        <p:growl showDetail="true" id="messages" />
-        <center>
-            <h:form id="formIns">
-                <h1 style="margin-top:0">Registrar cartelera</h1>
-                <p:panelGrid columns="4">
-                    <p:outputLabel value="Pelicula"/>
-                    <p:autoComplete  value="#{carteleraC.cartelera.IDPEL}" completeMethod="#{carteleraC.completeTextPelicula}" required="true" requiredMessage="Se necesita la pelicula"/>
-                    <p:outputLabel value="Hora"/>
-                    <p:inputText value="#{carteleraC.cartelera.HORCAR}" maxlength="50" required="true" requiredMessage="Se necesita la hora"/>
-                    <p:outputLabel value="Fecha"   />
-                    <p:calendar id="button" value="#{carteleraC.fechaFormulario}"  showOn="button" navigator="true" pattern="dd/MMM/yyyy" 
-                                required="true" style="width: 400px" requiredMessage="Se requiere la fecha"/>
-                    <p:outputLabel value="Precio"/>
-                    <p:inputText value="#{carteleraC.cartelera.PRECAR}" maxlength="11" required="true" requiredMessage="Se nesecita el precio"/>
-                </p:panelGrid>
-                <p:commandButton value="Registrar" actionListener="#{carteleraC.registrar()}" update="formIns :form:dtTable"/> 
-            </h:form>
-        </center>
+        <h:form>
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-md-12 grid-margin">
+                        <div class="d-flex justify-content-between flex-wrap">
+                            <div class="d-flex align-items-end flex-wrap">
+                                <div class="mr-md-3 mr-xl-5">
+                                    <h2>Cartelera</h2>
+                                    <p class="mb-md-0">Listados de las peliculas en estreno</p>
+                                </div>
+
+                            </div>
+                            <div class="d-flex justify-content-between align-items-end flex-wrap">
+                                <p:commandButton class="btn btn-primary mt-2 mt-xl-0" onclick="PF('wdlgAgregarC').show();" value="Agregar"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
 
         <p:spacer/>
         <h:form id="form">
@@ -42,12 +53,8 @@
                          rowKey="#{lista.IDPEL}"
                          rows="6" 
                          style="margin-bottom:20px">
-                
+
                 <p:autoUpdate />
-                
-                <f:facet name="header">
-                    CARTELERA
-                </f:facet>
 
                 <p:column headerText="Pelicula" filterBy="#{lista.IDPEL}" filterMatchMode="contains">
                     <center>
@@ -103,6 +110,103 @@
                 <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
             </h:form>
         </p:dialog>
+        <p:dialog id="dlgAgregarC" widgetVar="wdlgAgregarC" >
+            <p:growl showDetail="true" id="messages" />
+            <h:form id="formIns">
+                <h1 style="margin-top:0">Registrar cartelera</h1>
+                <p:panelGrid columns="4">
+                    <p:outputLabel value="Pelicula"/>
+                    <p:autoComplete  value="#{carteleraC.cartelera.IDPEL}" completeMethod="#{carteleraC.completeTextPelicula}" required="true" requiredMessage="Se necesita la pelicula"/>
+                    <p:outputLabel value="Hora"/>
+                    <p:inputText value="#{carteleraC.cartelera.HORCAR}" maxlength="50" required="true" requiredMessage="Se necesita la hora"/>
+                    <p:outputLabel value="Fecha"   />
+                    <p:calendar id="button" value="#{carteleraC.fechaFormulario}"  showOn="button" navigator="true" pattern="dd/MMM/yyyy" 
+                                required="true" style="width: 400px" requiredMessage="Se requiere la fecha"/>
+                    <p:outputLabel value="Precio"/>
+                    <p:inputText value="#{carteleraC.cartelera.PRECAR}" maxlength="11" required="true" requiredMessage="Se nesecita el precio"/>
+                </p:panelGrid>
+                <p:commandButton value="Registrar" actionListener="#{carteleraC.registrar()}" update="formIns :form:dtTable"/> 
+            </h:form>
+
+        </p:dialog>
+        <!-- plugins:js -->
+        <script src="../../recursos/vendors/base/vendor.bundle.base.js" type="text/javascript"></script>
+        <!-- endinject -->
+        <!-- Plugin js for this page-->
+        <script src="../../recursos/vendors/chart.js/Chart.min.js" type="text/javascript"></script>
+        <script src="../../recursos/vendors/datatables.net/jquery.dataTables.js" type="text/javascript"></script>
+        <script src="../../recursos/vendors/datatables.net-bs4/dataTables.bootstrap4.js" type="text/javascript"></script>
+        <!-- End plugin js for this page-->
+        <!-- inject:js -->
+        <script src="../../recursos/js/off-canvas.js" type="text/javascript"></script>
+        <script src="../../recursos/js/hoverable-collapse.js" type="text/javascript"></script>
+        <script src="../../recursos/js/template.js" type="text/javascript"></script>
+        <!-- endinject -->
+        <!-- Custom js for this page-->
+        <script src="../../recursos/js/dashboard.js" type="text/javascript"></script>
+        <script src="../../recursos/js/data-table.js" type="text/javascript"></script>
+        <script src="../../recursos/js/jquery.dataTables.js" type="text/javascript"></script>
+        <script src="../../recursos/js/dataTables.bootstrap4.js" type="text/javascript"></script>
+        <!-- End custom js for this page-->
+        <script type="text/javascript">
+                                    PrimeFaces.locales['es'] = {
+                                        closeText: 'Cerrar',
+                                        prevText: 'Anterior',
+                                        nextText: 'Siguiente',
+                                        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                        monthNamesShort: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                                        dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                                        dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+                                        weekHeader: 'Semana',
+                                        firstDay: 1,
+                                        isRTL: false,
+                                        showMonthAfterYear: false,
+                                        yearSuffix: '',
+                                        timeOnlyTitle: 'Sólo hora',
+                                        timeText: 'Tiempo',
+                                        hourText: 'Hora',
+                                        minuteText: 'Minuto',
+                                        secondText: 'Segundo',
+                                        currentText: 'Fecha actual',
+                                        ampm: false,
+                                        month: 'Mes',
+                                        week: 'Semana',
+                                        day: 'Día',
+                                        allDayText: 'Todo el día'
+                                    };
+
+        </script>
+
+        <script type="text/javascript">
+            PrimeFaces.locales['es'] = {
+                closeText: 'Cerrar',
+                prevText: 'Anterior',
+                nextText: 'Siguiente',
+                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                monthNamesShort: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+                weekHeader: 'Semana',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: '',
+                timeOnlyTitle: 'Sólo hora',
+                timeText: 'Tiempo',
+                hourText: 'Hora',
+                minuteText: 'Minuto',
+                secondText: 'Segundo',
+                currentText: 'Fecha actual',
+                ampm: false,
+                month: 'Mes',
+                week: 'Semana',
+                day: 'Día',
+                allDayText: 'Todo el día'
+            };
+
+        </script>
     </h:body>
 </html>
 
