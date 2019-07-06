@@ -1,0 +1,5 @@
+PELICULAS - PARAMETROS
+
+LENPEL : String -- ESPAÑOL
+GENPEL : String -- ANIMADOS
+HORPEL : String -- <= 03:00
