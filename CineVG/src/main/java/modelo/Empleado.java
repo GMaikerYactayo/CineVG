@@ -1,17 +1,30 @@
 package modelo;
 
+
 public class Empleado {
     
-private String NOMEMP;
-private String APEEMP;
-private String DNIEMP;
-private String DIREMP;
-private String TIPEMP;
-private String SEXEMP;
-private String USUEMP;
-private String PWDEMP;
-private String CODUBI;
-private String ESTEMP;
+    private int IDEMP;
+    private String NOMEMP;
+    private String APEEMP;
+    private String DNIEMP;
+    private String DIREMP;
+    private String TIPEMP;
+    private String SEXEMP;
+    private String USUEMP;
+    private String PWDEMP;   
+    private String CODUBI;
+    private String ESTEMP;
+    private String autUbi;
+    
+    //CÓDIGO GENERADO
+
+    public int getIDEMP() {
+        return IDEMP;
+    }
+
+    public void setIDEMP(int IDEMP) {
+        this.IDEMP = IDEMP;
+    }
 
     public String getNOMEMP() {
         return NOMEMP;
@@ -92,5 +105,17 @@ private String ESTEMP;
     public void setESTEMP(String ESTEMP) {
         this.ESTEMP = ESTEMP;
     }
+    
+        public String getAutUbi() {
+        return autUbi;
+    }
 
+    public void setAutUbi(String autUbi) {
+        this.autUbi = autUbi;
+    }
+    
+    
+    
+
+    
 }
