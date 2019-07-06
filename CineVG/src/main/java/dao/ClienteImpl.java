@@ -1,6 +1,5 @@
 package dao;
 
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,22 +28,23 @@ public class ClienteImpl extends Conexion implements ICRUD<Cliente> {
             ps.executeUpdate();
         } catch (SQLException e) {
             throw e;
-        }finally{
+        } finally {
             this.Cerrar();
         }
     }
 
-    public List<Cliente> listarcli()throws Exception{
+    public List<Cliente> listarcli(String estado) throws Exception {
         Cliente cliente;
-        List<Cliente> list = null;
+        List<Cliente> list;
         this.conectar();
         try {
             list = new ArrayList();
-            String sql = "select*from CLIENTE";
+            String sql = "select*from CLIENTE where ESTCLI='" + estado + "'";
             Statement st = getCn().createStatement();
             ResultSet rs = st.executeQuery(sql);
-            while(rs.next()){
+            while (rs.next()) {
                 cliente = new Cliente();
+                cliente.setIDCLI(rs.getInt("IDCLI"));
                 cliente.setNOMCLI(rs.getString("NOMCLI"));
                 cliente.setAPECLI(rs.getString("APECLI"));
                 cliente.setNACCLI(rs.getDate("NACCLI"));
@@ -55,22 +55,60 @@ public class ClienteImpl extends Conexion implements ICRUD<Cliente> {
             rs.close();
             st.close();
         } catch (SQLException e) {
-            System.out.println("Erroe: "+e );
+            System.out.println("Erroe: " + e);
             throw e;
-        }finally{
+        } finally {
             this.Cerrar();
         }
         return list;
     }
-    
+
     @Override
     public void modificar(Cliente cli) throws Exception {
-       
+        this.conectar();
+        try {
+            String sql = "update CLIENTE SET NOMCLI=?, APECLI=?, NACCLI=?, SEXCLI=? WHERE IDCLI=?";
+            PreparedStatement ps = getCn().prepareStatement(sql);
+            ps.setString(1, cli.getNOMCLI());
+            ps.setString(2, cli.getAPECLI());
+            ps.setDate(3, new java.sql.Date(cli.getNACCLI().getTime()));
+            ps.setString(4, cli.getSEXCLI());
+            ps.setInt(5, cli.getIDCLI());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error dao: " + e);
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+    }
+    public void habilitar(Cliente cli) throws Exception{
+         this.conectar();
+        try {
+            String sql = "update CLIENTE  set ESTCLI='A' where IDCLI=?";
+            PreparedStatement ps = getCn().prepareStatement(sql);
+            ps.setInt(1, cli.getIDCLI());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
     }
 
     @Override
-    public void eliminar(Cliente gen) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void eliminar(Cliente cli) throws Exception {
+        this.conectar();
+        try {
+            String sql = "update CLIENTE  set ESTCLI='I' where IDCLI=?";
+            PreparedStatement ps = getCn().prepareStatement(sql);
+            ps.setInt(1, cli.getIDCLI());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
     }
 
     @Override
