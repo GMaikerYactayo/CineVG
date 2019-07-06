@@ -14,17 +14,17 @@ public class PeliculaImpl extends Conexion implements ICRUD<Pelicula> {
     public void registrar(Pelicula pelicula) throws Exception {
         try {
             this.conectar();
-            String sql = "INSERT INTO PELICULA(NOMPEL,GENPEL,RESPEL,NOMCOMPEL,SUBPEL,IDIOMA,FOTPEL) VALUES (?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO PELICULA(NOMPEL,GENPEL,RESTPEL,TIPPEL,LENPEL,DURPEL,HORPEL,FECPEL,FOTPEL) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = this.getCn().prepareStatement(sql);
             ps.setString(1, pelicula.getNOMPEL());
             ps.setString(2, pelicula.getGENPEL());
-            ps.setString(3, pelicula.getTIPPEL());
-            ps.setString(4, pelicula.getLENPEL());
-            ps.setString(5, pelicula.getDURPEL());
-            ps.setString(6, pelicula.getHORPEL());
-            ps.setString(7, pelicula.getFECPEL());
-            ps.setString(8, pelicula.getHORPEL());
-            ps.setString(9, pelicula.getESTPEL());
+            ps.setString(3, pelicula.getRESTPEL());
+            ps.setString(4, pelicula.getTIPPEL());
+            ps.setString(5, pelicula.getLENPEL());
+            ps.setString(6, pelicula.getDURPEL());
+            ps.setString(7, pelicula.getHORPEL());
+            ps.setString(8, pelicula.getFECPEL());
+            ps.setString(9, pelicula.getFOTPEL());
 
         } catch (Exception e) {
         System.out.println("Error: " + e);
@@ -38,17 +38,19 @@ public class PeliculaImpl extends Conexion implements ICRUD<Pelicula> {
     public void modificar(Pelicula pelicula) throws Exception {
         try {
             this.conectar();
-            String sql = "UPDATE PELICULA SET NOMPEL = ?,GENPEL=?,RESPEL=?,NOMCOMPEL=?,SUBPEL=?,IDIOMA=? FOTPEL=? WHERE IDPEL LIKE ?";
+            String sql = "UPDATE PELICULA SET NOMPEL = ?,GENPEL=?,RESTPEL=?,TIPPEL=?,LENPEL=?,DURPEL=?,HORPEL=?,FECPEL=?,ESTPEL=?,FOTPEL=? WHERE IDPEL LIKE ?";
             PreparedStatement ps = this.getCn().prepareCall(sql);
             ps.setString(1, pelicula.getNOMPEL());
             ps.setString(2, pelicula.getGENPEL());
-            ps.setString(3, pelicula.getTIPPEL());
-            ps.setString(4, pelicula.getLENPEL());
-            ps.setString(5, pelicula.getDURPEL());
-            ps.setString(6, pelicula.getHORPEL());
-            ps.setString(7, pelicula.getFECPEL());
-            ps.setString(8, pelicula.getHORPEL());
+            ps.setString(3, pelicula.getRESTPEL());
+            ps.setString(4, pelicula.getTIPPEL());
+            ps.setString(5, pelicula.getLENPEL());
+            ps.setString(6, pelicula.getDURPEL());
+            ps.setString(7, pelicula.getHORPEL());
+            ps.setString(8, pelicula.getFECPEL());
             ps.setString(9, pelicula.getESTPEL());
+            ps.setString(10, pelicula.getFOTPEL());
+            ps.setString(11, pelicula.getIDPEL());
             ps.executeUpdate();
 
         } catch (Exception e) {
@@ -89,6 +91,7 @@ public class PeliculaImpl extends Conexion implements ICRUD<Pelicula> {
                 car.setIDPEL(rs.getString("IDPEL"));
                 car.setNOMPEL(rs.getString("NOMPEL"));
                 car.setGENPEL(rs.getString("GENPEL"));
+                car.setGENPEL(rs.getString("RESTPEL"));
                 car.setTIPPEL(rs.getString("TIPPEL"));
                 car.setLENPEL(rs.getString("LENPEL"));
                 car.setDURPEL(rs.getString("DURPEL"));
@@ -97,6 +100,7 @@ public class PeliculaImpl extends Conexion implements ICRUD<Pelicula> {
                 car.setESTPEL(rs.getString("ESTPEL"));
                 car.setFOTPEL(rs.getString("FOTPEL"));
                 listado.add(car);
+                          
             }
             rs.close();
             st.close();

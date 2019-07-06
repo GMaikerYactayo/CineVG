@@ -5,7 +5,8 @@ public class Pelicula {
 
     private String IDPEL;
     private String NOMPEL;
-    private String GENPEL;
+    private String GENPEL; 
+    private String RESTPEL; 
     private String TIPPEL;
     private String LENPEL;
     private String DURPEL;
@@ -92,6 +93,14 @@ public class Pelicula {
 
     public void setFOTPEL(String FOTPEL) {
         this.FOTPEL = FOTPEL;
+    }
+
+    public String getRESTPEL() {
+        return RESTPEL;
+    }
+
+    public void setRESTPEL(String RESTPEL) {
+        this.RESTPEL = RESTPEL;
     }
 
 

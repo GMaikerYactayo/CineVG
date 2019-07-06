@@ -10,69 +10,73 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import modelo.Pelicula;
 
-
 @Named(value = "peliculaC")
 @SessionScoped
 public class PeliculaC implements Serializable {
-    
+
     private Pelicula pelicula = new Pelicula();
-    private Pelicula select;
+    private Pelicula selectedPelicula;
     private List<Pelicula> listadoPel;
 
     @PostConstruct
-    public void iniciar(){
+    public void iniciar() {
         try {
             listar();
         } catch (Exception e) {
         }
-    
+
     }
-    
-    
-    public PeliculaC() {
+
+    public void limpiar() throws Exception {
+        try {
+            pelicula = new Pelicula();
+        } catch (Exception e) {
+            throw e;
+        }
+
     }
-    
-    public void registrar() throws Exception{
-    PeliculaImpl dao;
+
+    public void registrarPelicula() throws Exception {
+        PeliculaImpl dao;
         try {
             dao = new PeliculaImpl();
             dao.registrar(pelicula);
             listar();
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_INFO, "registrando", "Cargando.."));            
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "registrando", "Cargando.."));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void modificar() throws Exception{
-    PeliculaImpl dao;
+    public void modificar() throws Exception {
+        PeliculaImpl dao;
         try {
             dao = new PeliculaImpl();
             dao.modificar(pelicula);
             listar();
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_INFO,"Actualizando","Cargando..."));
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Actualizando", "Cargando..."));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
-    private void eliminar() throws Exception{
-    PeliculaImpl dao;
-    try {
-        dao = new PeliculaImpl();
-        dao.eliminar(pelicula);
-        listar();
-        FacesContext.getCurrentInstance().addMessage(null, 
-                new FacesMessage(FacesMessage.SEVERITY_INFO,"Eliminando","completado..."));
+
+    private void eliminar() throws Exception {
+        PeliculaImpl dao;
+        try {
+            dao = new PeliculaImpl();
+            dao.eliminar(pelicula);
+            listar();
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminando", "completado..."));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
-    public void listar() throws Exception{
-    PeliculaImpl dao;
+
+    public void listar() throws Exception {
+        PeliculaImpl dao;
         try {
             dao = new PeliculaImpl();
             listadoPel = dao.listar();
@@ -80,33 +84,13 @@ public class PeliculaC implements Serializable {
             throw e;
         }
     }
-    
-    public void limpiar() throws Exception{
-        try {
-            pelicula = new Pelicula();
-        } catch (Exception e) {
-            throw e;
-        }
-    
-    }
-    
-    
-    
-    
-        public Pelicula getPelicula() {
+
+    public Pelicula getPelicula() {
         return pelicula;
     }
 
     public void setPelicula(Pelicula pelicula) {
         this.pelicula = pelicula;
-    }
-
-    public Pelicula getSelect() {
-        return select;
-    }
-
-    public void setSelect(Pelicula select) {
-        this.select = select;
     }
 
     public List<Pelicula> getListadoPel() {
@@ -116,8 +100,13 @@ public class PeliculaC implements Serializable {
     public void setListadoPel(List<Pelicula> listadoPel) {
         this.listadoPel = listadoPel;
     }
-    
-    
-    
-    
+
+    public Pelicula getSelectedPelicula() {
+        return selectedPelicula;
+    }
+
+    public void setSelectedPelicula(Pelicula selectedPelicula) {
+        this.selectedPelicula = selectedPelicula;
+    }
+
 }
