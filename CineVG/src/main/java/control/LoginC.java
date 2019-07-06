@@ -31,7 +31,7 @@ public class LoginC implements Serializable {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("username", empleado);
                 switch (empleado.getTIPEMP()) {
                     case "1":
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("/CineVG/faces/vistas/cliente/Cliente.xhtml.");
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("/CineVG/faces/vistas/plantilla/Plantilla.xhtml");
                         break;
                     case "2":
                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "No eres un empleado >:v", "no lo intentes"));
@@ -53,10 +53,10 @@ public class LoginC implements Serializable {
         if (us != null) {
             switch (us.getTIPEMP()) {
                 case "1":
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("/DocVG/faces/vistas/login/LoginT.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("/CineVG/faces/vistas/login/Login.xhtml");
                     break;
                 case "2":
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("/DocVG/faces/vistas/login/LoginT.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("/CineVG/faces/vistas/login/Login.xhtml");
                     break;
             }
         }
@@ -64,7 +64,7 @@ public class LoginC implements Serializable {
 
     public void securitySession() throws IOException {
         if (Session.obtenerObjetoSesion() == null) {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/DocVG/faces/vistas/login/LoginT.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/CineVG/faces/vistas/login/Login.xhtml");
         }
     }
 
@@ -114,7 +114,5 @@ public class LoginC implements Serializable {
     public void setPWDEMP(String PWDEMP) {
         this.PWDEMP = PWDEMP;
     }
-
-    
 
 }

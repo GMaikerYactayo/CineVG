@@ -6,146 +6,147 @@
       xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <head>
         <title>Free CSS template by ChocoTemplates.com</title>
-        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-        <link href="../../recursos/vendors/mdi/css/materialdesignicons.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../../recursos/vendors/base/vendor.bundle.base.css" rel="stylesheet" type="text/css"/>
-        <!-- endinject -->
-        <!-- plugin css for this page -->
-        <link href="../../recursos/vendors/datatables.net-bs4/dataTables.bootstrap4.css" rel="stylesheet" type="text/css"/>
-        <!-- End plugin css for this page -->
-        <!-- inject:css -->
-        <link href="../../recursos/css/style.css" rel="stylesheet" type="text/css"/>
-        <!-- endinject -->
-        <link rel="shortcut icon" href="../../recursos/images/favicon.png" />
-    </head>
-    <h:body>
-        <div class="container-scroller">
-            <!-- partial:partials/_navbar.html -->
-            <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-                <div class="navbar-brand-wrapper d-flex justify-content-center">
-                    <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
-                        <a class="navbar-brand brand-logo" href="index.html">
-                            <img src="../../recursos/images/logo.svg" alt="logo"/>
-                        </a>
-                        <a class="navbar-brand brand-logo-mini" href="index.html">
-                            <img src="../../recursos/images/logo-mini.svg" alt="logo"/>
-                        </a>
-                        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-                            <span class="mdi mdi-sort-variant"></span>
-                        </button>
-                    </div>  
-                </div>
-                <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-
-                    <ul class="navbar-nav navbar-nav-right">
-
-
-                        <li class="nav-item nav-profile dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="profileDropdown">
-                                <span class="nav-profile-name">Administrador</span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                                <a class="dropdown-item">
-                                    <i class="mdi mdi-settings text-primary"></i>
-                                    Configuracion
-                                </a>
-                                <a class="dropdown-item">
-                                    <i class="mdi mdi-logout text-primary"></i>
-                                    Cerrar Session
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-                        <span class="mdi mdi-menu"></span>
+    <f:event type="preRenderView" listener="#{loginC.securitySession()}"/>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <link href="../../recursos/vendors/mdi/css/materialdesignicons.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../../recursos/vendors/base/vendor.bundle.base.css" rel="stylesheet" type="text/css"/>
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <link href="../../recursos/vendors/datatables.net-bs4/dataTables.bootstrap4.css" rel="stylesheet" type="text/css"/>
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link href="../../recursos/css/style.css" rel="stylesheet" type="text/css"/>
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../../recursos/images/favicon.png" />
+</head>
+<h:body>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="navbar-brand-wrapper d-flex justify-content-center">
+                <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
+                    <a class="navbar-brand brand-logo" href="index.html">
+                        <img src="../../recursos/images/logo.svg" alt="logo"/>
+                    </a>
+                    <a class="navbar-brand brand-logo-mini" href="index.html">
+                        <img src="../../recursos/images/logo-mini.svg" alt="logo"/>
+                    </a>
+                    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                        <span class="mdi mdi-sort-variant"></span>
                     </button>
-                </div>
+                </div>  
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+
+                <ul class="navbar-nav navbar-nav-right">
+
+
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="profileDropdown">
+                            <span class="nav-profile-name">Administrador</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item">
+                                <i class="mdi mdi-settings text-primary"></i>
+                                Configuracion
+                            </a>
+                            <a class="dropdown-item">
+                                <i class="mdi mdi-logout text-primary"></i>
+                                Cerrar Session
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../dashboard/Dashboard.xhtml">
+                            <i class="mdi mdi-home menu-icon"></i>
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                            <i class="mdi mdi-circle-outline menu-icon"></i>
+                            <span class="menu-title">MM Mantenimiento</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="../pelicula/Pelicula.xhtml" target="vistaI">Peliculas</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../cartelera/LstCartelera.xhtml" target="vistaI">Cartelera</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../cliente/Cliente.xhtml" target="vistaI">
+                            <i class="mdi mdi-view-headline menu-icon"></i>
+                            <span class="menu-title">Cliente</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../sala/LstSala.xhtml">
+                            <i class="mdi mdi-chart-pie menu-icon"></i>
+                            <span class="menu-title">Sala</span>
+                        </a>
+                    </li>
+                    <!--                        <li class="nav-item">
+                                                <a class="nav-link" href="pages/tables/basic-table.html">
+                                                    <i class="mdi mdi-grid-large menu-icon"></i>
+                                                    <span class="menu-title">Tables</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="pages/icons/mdi.html">
+                                                    <i class="mdi mdi-emoticon menu-icon"></i>
+                                                    <span class="menu-title">Icons</span>
+                                                </a>
+                                            </li>
+                          
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="documentation/documentation.html">
+                                                    <i class="mdi mdi-file-document-box-outline menu-icon"></i>
+                                                    <span class="menu-title">Documentation</span>
+                                                </a>
+                                            </li>-->
+                </ul>
             </nav>
             <!-- partial -->
-            <div class="container-fluid page-body-wrapper">
-                <!-- partial:partials/_sidebar.html -->
-                <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="../dashboard/Dashboard.xhtml">
-                                <i class="mdi mdi-home menu-icon"></i>
-                                <span class="menu-title">Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                                <i class="mdi mdi-circle-outline menu-icon"></i>
-                                <span class="menu-title">MM Mantenimiento</span>
-                                <i class="menu-arrow"></i>
-                            </a>
-                            <div class="collapse" id="ui-basic">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item"> <a class="nav-link" href="../pelicula/Pelicula.xhtml" target="vistaI">Peliculas</a></li>
-                                    <li class="nav-item"> <a class="nav-link" href="../cartelera/LstCartelera.xhtml" target="vistaI">Cartelera</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../cliente/Cliente.xhtml" target="vistaI">
-                                <i class="mdi mdi-view-headline menu-icon"></i>
-                                <span class="menu-title">Cliente</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../sala/LstSala.xhtml">
-                                <i class="mdi mdi-chart-pie menu-icon"></i>
-                                <span class="menu-title">Sala</span>
-                            </a>
-                        </li>
-<!--                        <li class="nav-item">
-                            <a class="nav-link" href="pages/tables/basic-table.html">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">Tables</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages/icons/mdi.html">
-                                <i class="mdi mdi-emoticon menu-icon"></i>
-                                <span class="menu-title">Icons</span>
-                            </a>
-                        </li>
-      
-                        <li class="nav-item">
-                            <a class="nav-link" href="documentation/documentation.html">
-                                <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                                <span class="menu-title">Documentation</span>
-                            </a>
-                        </li>-->
-                    </ul>
-                </nav>
-                <!-- partial -->
-                <div class="main-panel">
-                    <ui:insert name="vista"/>
-                </div>
-                <!-- main-panel ends -->
+            <div class="main-panel">
+                <ui:insert name="vista"/>
             </div>
-            <!-- page-body-wrapper ends -->
+            <!-- main-panel ends -->
         </div>
-        <!-- container-scroller -->
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
 
-        <!-- plugins:js -->
-        <script src="../../recursos/vendors/base/vendor.bundle.base.js" type="text/javascript"></script>
-        <!-- endinject -->
-        <!-- Plugin js for this page-->
-        <script src="../../recursos/vendors/chart.js/Chart.min.js" type="text/javascript"></script>
-        <script src="../../recursos/vendors/datatables.net/jquery.dataTables.js" type="text/javascript"></script>
-        <script src="../../recursos/vendors/datatables.net-bs4/dataTables.bootstrap4.js" type="text/javascript"></script>
-        <!-- End plugin js for this page-->
-        <!-- inject:js -->
-        <script src="../../recursos/js/off-canvas.js" type="text/javascript"></script>
-        <script src="../../recursos/js/hoverable-collapse.js" type="text/javascript"></script>
-        <script src="../../recursos/js/template.js" type="text/javascript"></script>
-        <!-- endinject -->
-        <!-- Custom js for this page-->
-        <script src="../../recursos/js/dashboard.js" type="text/javascript"></script>
-        <script src="../../recursos/js/data-table.js" type="text/javascript"></script>
-        <script src="../../recursos/js/jquery.dataTables.js" type="text/javascript"></script>
-        <script src="../../recursos/js/dataTables.bootstrap4.js" type="text/javascript"></script>
-        <!-- End custom js for this page-->
-    </h:body>
+    <!-- plugins:js -->
+    <script src="../../recursos/vendors/base/vendor.bundle.base.js" type="text/javascript"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <script src="../../recursos/vendors/chart.js/Chart.min.js" type="text/javascript"></script>
+    <script src="../../recursos/vendors/datatables.net/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="../../recursos/vendors/datatables.net-bs4/dataTables.bootstrap4.js" type="text/javascript"></script>
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="../../recursos/js/off-canvas.js" type="text/javascript"></script>
+    <script src="../../recursos/js/hoverable-collapse.js" type="text/javascript"></script>
+    <script src="../../recursos/js/template.js" type="text/javascript"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="../../recursos/js/dashboard.js" type="text/javascript"></script>
+    <script src="../../recursos/js/data-table.js" type="text/javascript"></script>
+    <script src="../../recursos/js/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="../../recursos/js/dataTables.bootstrap4.js" type="text/javascript"></script>
+    <!-- End custom js for this page-->
+</h:body>
 </html>

@@ -6,6 +6,7 @@
       xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>MovieHunter</title>
+        <f:event type="preRenderView" listener="#{loginC.securitySession()}"/>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link href="recursos/css/style.css" rel="stylesheet" type="text/css"/>
         <script src="recursos/js/jquery-1.4.2.min.js" type="text/javascript"></script>
@@ -39,7 +40,7 @@
                         <li><a href="#">TOP RATED</a></li>
                         <li><a href="#">MOST COMMENTED</a></li>
                     </ul>
-                    
+
                 </div>
             </div>
             <div id="main">
