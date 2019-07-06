@@ -17,3 +17,4 @@ services\Encriptar.class
 dao\CarteleraImpl.class
 dao\ClienteImpl.class
 modelo\Cartelera.class
+services\ConvertirSexo.class
