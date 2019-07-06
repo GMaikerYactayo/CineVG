@@ -9,19 +9,50 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
-        <h:form id="agregarPersona">
-            <p:panelGrid columns="4">
-                <p:outputLabel value="Persona"/>
-                <p:inputText value="#{personaC.personaM.NOMPER}"/>
-                <p:outputLabel value="Persona"/>
-                <p:inputText value="#{personaC.personaM.APEPER}"/>
-                <p:outputLabel value="Persona"/>
-                <p:inputText value="#{personaC.personaM.DNIPER}"/>
-                <p:outputLabel value="Persona"/>
-                <p:inputText value="#{personaC.personaM.USUPER}"/>
-                <p:outputLabel value="Persona"/>
-                <p:inputText value="#{personaC.personaM.PSWPER}"/>
-            </p:panelGrid>
+        <p:growl showDetail="true">
+            <p:autoUpdate/>
+        </p:growl>
+        <ui:include src="InsSala.xhtml"/>
+        <h:form id="formListSala">
+            <p:selectOneButton value="#{salaC.estado}" unselectable="false">
+                <p:ajax listener="#{salaC.listar()}" update="dtSala menuSala" event="change"/>
+                <f:selectItem itemLabel="Activos" itemValue="A"/>
+                <f:selectItem itemLabel="Inactivos" itemValue="I" />
+            </p:selectOneButton>
+            <p:dataTable id="dtSala" rows="10" value="#{salaC.lista}" var="listSala" selectionMode="single"
+                         selection="#{salaC.modelo}" rowKey="#{listSala.IDSAL}"
+                         paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                         paginator="true">
+                <p:column headerText="Numero">
+                    <h:outputLabel value="#{listSala.NUMSAL}"/>
+                </p:column>
+                <p:column headerText="Capacidad">
+                    <h:outputLabel value="#{listSala.CAPSAL}"/>
+                </p:column>
+            </p:dataTable>
+            <p:contextMenu id="menuSala" for="dtSala">
+                <p:menuitem value="Modificar" update=":dlgEdit" icon="ui-icon-pencil"  oncomplete="PF('wdlgEdit').show()"
+                            rendered="#{salaC.estado eq 'A'}"/>
+                <p:menuitem value="#{salaC.estado eq 'A'?'Eliminar':'Activar'}" update=":formListSala" 
+                            icon="#{salaC.estado eq 'A'?'ui-icon-close':'ui-icon-check'}" action="#{salaC.eliminar()}"/>
+            </p:contextMenu>
         </h:form>
+        <p:dialog id="dlgEdit" widgetVar="wdlgEdit" >
+            <h:form>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Numero"/>
+                    <p:spinner value="#{salaC.modelo.NUMSAL}" min="1" max="25" required="true"
+                               requiredMessage="Numero de sala Requerido"/>
+                    <p:outputLabel value="Capacidad"/>
+                    <p:spinner value="#{salaC.modelo.CAPSAL}" min="1" max="200"
+                               required="true" requiredMessage="Capacidad de sala Requerida"/>
+                </p:panelGrid>
+                <p:commandButton value="Actualizar" actionListener="#{carteleraC.modificar()}"
+                                 update="@form :formListSala:dtSala" oncomplete="PF('wdlgEdit').hide();">
+                    <p:tooltip trackMouse="true"/>
+                </p:commandButton>
+                <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgEdit').hide();"/>
+            </h:form>
+        </p:dialog>
     </h:body>
 </html>

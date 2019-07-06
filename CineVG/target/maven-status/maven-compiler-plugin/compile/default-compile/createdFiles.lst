@@ -4,6 +4,10 @@ control\SalaC.class
 control\CarteleraC.class
 modelo\Sala.class
 control\PeliculaC.class
+control\LoginC.class
+modelo\Empleado.class
+dao\Login.class
+services\Session.class
 control\ClienteC.class
 dao\Conexion.class
 dao\ICRUD.class

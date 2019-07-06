@@ -4,7 +4,7 @@ public class Sala {
     private int IDSAL;
     private int NUMSAL;
     private int CAPSAL;
-    private String ESTSAL;
+    private String ESTSAL = "A";
 
     public int getIDSAL() {
         return IDSAL;

@@ -4,22 +4,17 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>Sala</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </h:head>
     <h:body>
-        <p:growl showDetail="true">
-            <p:autoUpdate/>
-        </p:growl>
-        <h:form id="agregarPersona">
-            <p:panelGrid columns="4">
-                <p:outputLabel value="Numero"/>
-                <p:inputText value="#{salaC.modelo.NUMSAL}"/>
-                <p:outputLabel value="Capacidad"/>
-                <p:inputText value="#{salaC.modelo.CAPSAL}"/>
-                <p:commandButton value="Registrar" actionListener="#{salaC.registrar}"/>
-            </p:panelGrid>
-        </h:form>
+        <ui:composition>
+            <h:form id="formInsSala">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Numero"/>
+                    <p:spinner value="#{salaC.modelo.NUMSAL}" min="1"/>
+                    <p:outputLabel value="Capacidad"/>
+                    <p:spinner value="#{salaC.modelo.CAPSAL}" min="1"/>
+                    <p:commandButton value="Registrar" update="@form :formListSala:dtSala" actionListener="#{salaC.registrar}"/>
+                </p:panelGrid>
+            </h:form>
+        </ui:composition>
     </h:body>
 </html>
