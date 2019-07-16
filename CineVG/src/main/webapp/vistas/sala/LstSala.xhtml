@@ -38,6 +38,13 @@
                 <p:column headerText="Capacidad">
                     <h:outputLabel value="#{listSala.CAPSAL}"/>
                 </p:column>
+                <f:facet name="header">
+                    <div style="float:right;padding-top: 5px;">
+                        <h:commandLink value="REPORTE" actionListener="#{salaC.REPORTESALA(idcli)}">
+                            <p:graphicImage url="../../recursos/images/favicon.png" width="35" title="Descargar Reporte"/>
+                        </h:commandLink>
+                    </div>
+                </f:facet   >
             </p:dataTable>
             <p:contextMenu id="menuSala" for="dtSala">
                 <p:menuitem value="Modificar" update=":dlgEdit" icon="ui-icon-pencil"  oncomplete="PF('wdlgEdit').show()"

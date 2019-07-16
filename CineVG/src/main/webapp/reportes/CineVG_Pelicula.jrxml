@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2019-07-16T18:02:21 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Apoderados_Aula" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8521b5b5-fce5-410d-ae12-5dbb936e9e36">
-	<property name="com.jaspersoft.studio.data.sql.tables">
-		<![CDATA[IlBFTElDVUxBIiAsMTUsMTUsMmE3YWIyM2QtNjUxOC00ZDhmLTlkOTEtZjA4YTdjNjk3MjdlOw==
-]]>
-	</property>
+	<property name="com.jaspersoft.studio.data.sql.tables" value="IlBFTElDVUxBIiAsMTUsMTUsMmE3YWIyM2QtNjUxOC00ZDhmLTlkOTEtZjA4YTdjNjk3MjdlOw=="/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="468"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="521"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="CineVG"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<queryString>
 		<![CDATA[SELECT "PELICULA"."IDPEL",
 	"PELICULA"."NOMPEL",
@@ -127,7 +125,7 @@ FROM "PELICULA"]]>
 	<columnHeader>
 		<band height="50" splitType="Stretch">
 			<staticText>
-				<reportElement x="125" y="10" width="44" height="20" forecolor="#111145" uuid="63e9cb39-d9a7-4cfb-a3e2-79e6dba4d15a"/>
+				<reportElement x="125" y="10" width="39" height="20" forecolor="#111145" uuid="63e9cb39-d9a7-4cfb-a3e2-79e6dba4d15a"/>
 				<box>
 					<pen lineColor="#111145"/>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>

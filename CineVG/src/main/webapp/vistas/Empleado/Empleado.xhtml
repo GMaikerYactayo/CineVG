@@ -109,6 +109,13 @@
                 <f:facet name="footer">
                     En Total hay #{fn:length(empleadoC.listadoEmp)} Registros.
                 </f:facet>
+                <f:facet name="header">
+                    <div style="float:right;padding-top: 5px;">
+                        <h:commandLink value="REPORTE" actionListener="#{empleadoC.REPORTEEMPLEADO(idcli)}">
+                            <p:graphicImage url="../../recursos/images/favicon.png" width="35" title="Descargar Reporte"/>
+                        </h:commandLink>
+                    </div>
+                </f:facet>
 
 
                 <!--FORMULARIO PARA REGISTRAR LOS DATOS DEL EMPLEADO-->

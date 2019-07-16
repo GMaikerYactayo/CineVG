@@ -1,12 +1,15 @@
 package control;
 
+import Reportes.report;
 import dao.DashboardImpl;
 import dao.PeliculaImpl;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -46,8 +49,8 @@ public class PeliculaC implements Serializable {
         }
 
     }
-    
-     public void lstCantPeli() throws Exception {
+
+    public void lstCantPeli() throws Exception {
         DashboardImpl dao;
         try {
             dao = new DashboardImpl();
@@ -57,8 +60,8 @@ public class PeliculaC implements Serializable {
             throw e;
         }
     }
-     
-         private void createBarras() {
+
+    private void createBarras() {
         try {
             barra = new BarChartModel();
             for (int i = 0; i < NPelicula.size(); i++) {
@@ -73,16 +76,14 @@ public class PeliculaC implements Serializable {
             barra = getBarra();
             barra.setTitle("NÚMERO DE PELÍCULAS POR GÉNERO");
             barra.setAnimate(true);
-            
+
             Axis yAxis = barra.getAxis(AxisType.Y);
             yAxis.setMax(30);
         } catch (Exception e) {
-            System.out.println("error" +e.getMessage());
+            System.out.println("error" + e.getMessage());
         }
     }
-    
-    
-    
+
     public void registrarPelicula() throws Exception {
         PeliculaImpl dao;
         try {
@@ -117,6 +118,18 @@ public class PeliculaC implements Serializable {
             listar();
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminando", "completado..."));
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public void REPORTEPELICULA(String idcli) throws Exception {
+        report reportPELICULA = new report();
+        try {
+            Map<String, Object> parameters = new HashMap(); // Libro de parametros
+            parameters.put(null, idcli); //Insertamos un parametro
+            reportPELICULA.exportarPELICULA(parameters); //Pido exportar Reporte con los parametros
+//            report.exportarPDF2(parameters);
         } catch (Exception e) {
             throw e;
         }
@@ -171,10 +184,5 @@ public class PeliculaC implements Serializable {
     public void setNPelicula(List<NPelicula> NPelicula) {
         this.NPelicula = NPelicula;
     }
-
-
-
-    
-    
 
 }
