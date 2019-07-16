@@ -58,6 +58,7 @@ public class CarteleraC implements Serializable {
         CarteleraImpl dao;
         try {
             dao = new CarteleraImpl();
+            cartelera.setFECCAR(formateador.format(fechaFormulario));
             cartelera.setIDPEL(dao.obtenerCodigoPelicula(cartelera.getIDPEL()));
             dao.modificar(cartelera);
             listar();
