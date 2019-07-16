@@ -8,10 +8,8 @@
 
     </h:head>
     <h:body>
-        <ui:composition template="../plantilla/Plantilla.xhtml">
-            <ui:define name="vista">
-                <p:button value="demoo"/>
-            </ui:define>
-        </ui:composition>
+        <h:form >
+            <p:chart type="bar" model="#{peliculaC.barra}" style="width:500px;height:300px"/>
+        </h:form>
     </h:body>
 </html>

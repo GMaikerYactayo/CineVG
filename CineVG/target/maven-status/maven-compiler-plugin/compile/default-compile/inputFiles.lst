@@ -1,26 +1,28 @@
-C:\JQ\CineVG\CineVG\src\main\java\dao\ICRUD.java
-C:\JQ\CineVG\CineVG\src\main\java\dao\ClienteImpl.java
-C:\JQ\CineVG\CineVG\src\main\java\control\LoginC.java
-C:\JQ\CineVG\CineVG\src\main\java\dao\PeliculaImpl.java
-C:\JQ\CineVG\CineVG\src\main\java\dao\SalaImpl.java
-C:\JQ\CineVG\CineVG\src\main\java\dao\EmpleadoImpl.java
-C:\JQ\CineVG\CineVG\src\main\java\dao\VentaImpl.java
-C:\JQ\CineVG\CineVG\src\main\java\services\Session.java
-C:\JQ\CineVG\CineVG\src\main\java\modelo\Venta.java
-C:\JQ\CineVG\CineVG\src\main\java\modelo\Sala.java
-C:\JQ\CineVG\CineVG\src\main\java\control\CarteleraC.java
-C:\JQ\CineVG\CineVG\src\main\java\services\Encriptar.java
-C:\JQ\CineVG\CineVG\src\main\java\control\ClienteC.java
-C:\JQ\CineVG\CineVG\src\main\java\dao\Login.java
-C:\JQ\CineVG\CineVG\src\main\java\services\ConvertirSexo.java
-C:\JQ\CineVG\CineVG\src\main\java\control\VentaC.java
-C:\JQ\CineVG\CineVG\src\main\java\modelo\Pelicula.java
-C:\JQ\CineVG\CineVG\src\main\java\dao\Conexion.java
-C:\JQ\CineVG\CineVG\src\main\java\modelo\Cartelera.java
-C:\JQ\CineVG\CineVG\src\main\java\Reportes\report.java
-C:\JQ\CineVG\CineVG\src\main\java\control\PeliculaC.java
-C:\JQ\CineVG\CineVG\src\main\java\control\EmpleadoC.java
-C:\JQ\CineVG\CineVG\src\main\java\dao\CarteleraImpl.java
-C:\JQ\CineVG\CineVG\src\main\java\control\SalaC.java
-C:\JQ\CineVG\CineVG\src\main\java\modelo\Empleado.java
-C:\JQ\CineVG\CineVG\src\main\java\modelo\Cliente.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\services\ConvertirSexo.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\control\ClienteC.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\control\SalaC.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\control\CarteleraC.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\modelo\Cartelera.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\modelo\NPelicula.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\modelo\Venta.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\modelo\Cliente.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\dao\CarteleraImpl.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\control\LoginC.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\control\PeliculaC.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\control\EmpleadoC.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\dao\VentaImpl.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\dao\ICRUD.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\dao\PeliculaImpl.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\modelo\Pelicula.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\dao\SalaImpl.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\dao\EmpleadoImpl.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\control\VentaC.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\services\Session.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\dao\Conexion.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\modelo\Empleado.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\modelo\Sala.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\dao\ClienteImpl.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\services\Encriptar.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\dao\DashboardImpl.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\dao\Login.java
+C:\Users\PC\Documents\NetBeansProjects\Nueva Carpeta\Nueva Carpeta\Nueva Carpeta\CineVG\CineVG\src\main\java\Reportes\report.java
