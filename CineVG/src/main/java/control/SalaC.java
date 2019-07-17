@@ -84,6 +84,9 @@ public class SalaC implements Serializable {
 
     public void listar() throws Exception {
         try {
+            if (estado == null) {
+                estado = "A";
+            }
             lista = dao.listar("'" + estado + "'");
         } catch (Exception e) {
             System.out.println(e.getMessage());

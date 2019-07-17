@@ -11,6 +11,29 @@
 
     </h:head>
     <h:body>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+        <h:form>
+            <p:growl showDetail="true" id="messages" />
+            <h:form id="formIns">
+                <h1 style="margin-top:0">Registrar cartelera</h1>
+                <p:panelGrid columns="4">
+                    <p:outputLabel value="Pelicula"/>
+                    <p:autoComplete  value="#{carteleraC.cartelera.IDPEL}" completeMethod="#{carteleraC.completeTextPelicula}" required="true" requiredMessage="Se necesita la pelicula"/>
+                    <p:outputLabel value="Hora"/>
+                    <p:inputMask value="#{carteleraC.cartelera.HORCAR}" mask="99:99" required="true" requiredMessage="Se nesecita la hora"/>
+                    <p:outputLabel value="Fecha"   />
+                    <p:calendar id="button" value="#{carteleraC.fechaFormulario}"  showOn="button" navigator="true" pattern="dd/MMM/yyyy" 
+                                required="true" style="width: 400px" requiredMessage="Se requiere la fecha"/>
+                    <p:outputLabel value="Precio"/>
+                    <p:inputMask value="#{carteleraC.cartelera.PRECAR}" mask="9.99" required="true" requiredMessage="Se nesecita el precio"/>
+                </p:panelGrid>
+                <p:commandButton value="Registrar" actionListener="#{carteleraC.registrar()}" /> 
+            </h:form>
+=======
+>>>>>>> origin/master
         <ui:composition template="../Menu/Menu.xhtml">
             <ui:define name="menu">
                 <h:form>
@@ -30,58 +53,83 @@
                         </p:panelGrid>
                         <p:commandButton value="Registrar" actionListener="#{carteleraC.registrar()}" /> 
                     </h:form>
+>>>>>>> origin/master
 
-                </h:form>
+        </h:form>
 
-                <p:spacer/>
-                <h:form id="form">
-                    <p:dataTable value="#{carteleraC.listadoCar}" 
-                                 var="lista" 
-                                 id="dtTable" 
-                                 selectionMode="single"
-                                 filteredValue="#{carteleraC.listadoCar}"
-                                 selection="#{carteleraC.cartelera}"
-                                 paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                                 paginator="true" 
-                                 rowKey="#{lista.IDCAR}"
-                                 rows="6" 
-                                 style="margin-bottom:20px">
+        <p:spacer/>
+        <h:form id="form">
+            <p:dataTable value="#{carteleraC.listadoCar}" 
+                         var="lista" 
+                         id="dtTable" 
+                         selectionMode="single"
+                         filteredValue="#{carteleraC.listadoCar}"
+                         selection="#{carteleraC.cartelera}"
+                         paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                         paginator="true" 
+                         rowKey="#{lista.IDCAR}"
+                         rows="6" 
+                         style="margin-bottom:20px">
 
-                        <p:autoUpdate />
+                <p:autoUpdate />
 
-                        <p:column headerText="Pelicula" filterBy="#{lista.IDPEL}" filterMatchMode="contains">
-                            <center>
-                                <h:outputText value="#{lista.IDPEL}" />
-                            </center>
-                        </p:column>
-                        <p:column headerText="Hora"  filterBy="#{lista.HORCAR}" filterMatchMode="contains">
-                            <center>
-                                <h:outputText value="#{lista.HORCAR}" />
-                            </center>
-                        </p:column>
-                        <p:column headerText="Fecha" >
-                            <center>
-                                <h:outputText value="#{lista.FECCAR}" />
-                            </center>
-                        </p:column>
-                        <p:column headerText="Precio" >
-                            <center>
-                                <h:outputText value="#{lista.PRECAR}" />
-                            </center>
-                        </p:column>
+                <p:column headerText="Pelicula" filterBy="#{lista.IDPEL}" filterMatchMode="contains">
+                    <center>
+                        <h:outputText value="#{lista.IDPEL}" />
+                    </center>
+                </p:column>
+                <p:column headerText="Hora"  filterBy="#{lista.HORCAR}" filterMatchMode="contains">
+                    <center>
+                        <h:outputText value="#{lista.HORCAR}" />
+                    </center>
+                </p:column>
+                <p:column headerText="Fecha" >
+                    <center>
+                        <h:outputText value="#{lista.FECCAR}" />
+                    </center>
+                </p:column>
+                <p:column headerText="Precio" >
+                    <center>
+                        <h:outputText value="#{lista.PRECAR}" />
+                    </center>
+                </p:column>
 
-                        <f:facet name="footer">
-                            <h:commandLink actionListener="#{empresaC.REPORTE_PDF_EMPRESA(CodigoEMPRESA)}" >
-                                <p:graphicImage url="../../icon/PDF-logo.png" width="50" title="Descargar Reporte"/>
-                            </h:commandLink>
-                            EN TOTAL HAY #{fn:length(carteleraC.listadoCar)} REGISTROS.
-                        </f:facet>
-                    </p:dataTable>
-                    <p:contextMenu for="dtTable">
-                        <p:menuitem value="Modificar" update=":dlgDatos" icon="ui-icon-pencil"  oncomplete="PF('wdlgDatos').show()"/>
-                        <p:menuitem value="Eliminar" update=":form" icon="ui-icon-circle-close" action="#{carteleraC.eliminar()}"/>
-                    </p:contextMenu>
+                <f:facet name="footer">
+                    <h:commandLink actionListener="#{empresaC.REPORTE_PDF_EMPRESA(CodigoEMPRESA)}" >
+                        <p:graphicImage url="../../icon/PDF-logo.png" width="50" title="Descargar Reporte"/>
+                    </h:commandLink>
+                    EN TOTAL HAY #{fn:length(carteleraC.listadoCar)} REGISTROS.
+                </f:facet>
+            </p:dataTable>
+            <p:contextMenu for="dtTable">
+                <p:menuitem value="Modificar" update=":dlgDatos" icon="ui-icon-pencil"  oncomplete="PF('wdlgDatos').show()"/>
+                <p:menuitem value="Eliminar" update=":form" icon="ui-icon-circle-close" action="#{carteleraC.eliminar()}"/>
+            </p:contextMenu>
 
+<<<<<<< HEAD
+        </h:form>
+        <p:dialog id="dlgDatos" widgetVar="wdlgDatos" >
+            <h:form>
+                <p:panelGrid columns="4">
+                    <p:outputLabel value="Pelicula"/>
+                    <p:autoComplete  value="#{carteleraC.cartelera.IDPEL}" completeMethod="#{carteleraC.completeTextPelicula}" required="true" requiredMessage="Se necesita la pelicula"/>
+                    <p:outputLabel value="Hora"/>
+                    <p:inputMask value="#{carteleraC.cartelera.HORCAR}" mask="99:99" required="true" requiredMessage="Se nesecita la hora"/>
+                    <p:outputLabel value="Fecha"   />
+                    <p:calendar id="button" value="#{carteleraC.fechaFormulario}"  showOn="button" navigator="true" pattern="dd/MMM/yyyy" 
+                                required="true" style="width: 400px" requiredMessage="Se requiere la fecha"/>
+                    <p:outputLabel value="Precio"/>
+                    <p:inputMask value="#{carteleraC.cartelera.PRECAR}" mask="9.99" required="true" requiredMessage="Se nesecita el precio"/>
+                </p:panelGrid>
+                <p:commandButton value="Actualizar" actionListener="#{carteleraC.modificar()}"
+                                 update=":form:dtTable" oncomplete="PF('wdlgDatos').hide();">
+                    <p:tooltip trackMouse="true"/>
+                </p:commandButton>
+                <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+            </h:form>
+        </p:dialog>
+
+=======
                 </h:form>
                 <p:dialog id="dlgDatos" widgetVar="wdlgDatos" >
                     <h:form>
@@ -105,6 +153,10 @@
                 </p:dialog>
             </ui:define>
         </ui:composition>
+<<<<<<< HEAD
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
     </h:body>
 </html>
 

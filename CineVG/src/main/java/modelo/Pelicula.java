@@ -93,6 +93,18 @@ public class Pelicula {
         this.ESTPEL = ESTPEL;
     }
 
+<<<<<<< HEAD
+=======
+
+
+    public String getRESTPEL() {
+        return RESTPEL;
+    }
+
+    public void setRESTPEL(String RESTPEL) {
+        this.RESTPEL = RESTPEL;
+    }
+>>>>>>> origin/master
 
 
 }

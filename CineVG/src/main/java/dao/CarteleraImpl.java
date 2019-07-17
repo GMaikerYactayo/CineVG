@@ -42,7 +42,7 @@ public class CarteleraImpl extends Conexion implements ICRUD<Cartelera>{
             ps.setString(3, cartelera.getFECCAR());
             ps.setString(4, cartelera.getIDPEL());
             ps.setString(5, cartelera.getESTCAR());
-            ps.setString(6, cartelera.getIDCAR());
+            ps.setInt(6, cartelera.getIDCAR());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -57,7 +57,7 @@ public class CarteleraImpl extends Conexion implements ICRUD<Cartelera>{
             this.conectar();
             String sql = "delete from CARTELERA where IDCAR=?";
             PreparedStatement ps = this.getCn().prepareCall(sql);
-            ps.setString(1, cartelera.getIDCAR());
+            ps.setInt(1, cartelera.getIDCAR());
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
@@ -79,10 +79,11 @@ public class CarteleraImpl extends Conexion implements ICRUD<Cartelera>{
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 car = new Cartelera();
-                car.setIDCAR(rs.getString("IDCAR"));
+                car.setIDCAR(rs.getInt("IDCAR"));
                 car.setHORCAR(rs.getString("HORCAR"));
                 car.setFECCAR(rs.getString("FECCAR"));
                 car.setIDPEL(rs.getString("IDPEL"));
+                car.setNOMPEL(rs.getString("NOMPEL"));
                 car.setPRECAR(rs.getString("PRECAR"));
                 car.setESTCAR(rs.getString("ESTCAR"));
                 listado.add(car);

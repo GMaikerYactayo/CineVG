@@ -37,6 +37,7 @@
                         </p:inputText>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <h:outputLabel for="idiosa" value="IDIOMA"/>
                 <p:inputText id="idioma" value="#{pelicula.LENPEL}" 
                              placeholder="INGRESAR APELLIDOS" 
@@ -52,6 +53,23 @@
             <p:commandButton class="btn btn-primary mt-2 mt-xl-0" onclick="PF('wdlgAgregarP').show();" value="Agregar Pelicula"/>
         </div>
     </h:form>
+=======
+                        <h:outputLabel for="idiosa" value="IDIOMA"/>
+                        <p:inputText id="idioma" value="#{pelicula.LENPEL}" 
+                                     placeholder="INGRESAR APELLIDOS" 
+                                     required="true"
+                                     requiredMessage="SE REQUIERE APELLIDO">
+                        </p:inputText>
+                    </p:panelGrid>
+                    <p:commandButton value="REGISTRAR" 
+                                     actionListener="#{peliculaC.registrarPelicula()}" 
+                                     update=":ListPel:pelicula :growl" />
+                </h:form>
+                <div class="d-flex justify-content-between align-items-end flex-wrap">
+                    <p:commandButton class="btn btn-primary mt-2 mt-xl-0" onclick="PF('wdlgAgregarP').show();" value="Agregar Pelicula"/>
+                </div>
+            </h:form>
+>>>>>>> origin/master
 =======
                         <h:outputLabel for="idiosa" value="IDIOMA"/>
                         <p:inputText id="idioma" value="#{pelicula.LENPEL}" 

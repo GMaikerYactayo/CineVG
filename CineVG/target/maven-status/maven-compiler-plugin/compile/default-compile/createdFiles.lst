@@ -3,12 +3,18 @@ modelo\Pelicula.class
 control\SalaC.class
 dao\VentaImpl.class
 modelo\Sala.class
+<<<<<<< HEAD
+=======
+modelo\VenDetalle.class
+control\PeliculaC.class
+>>>>>>> origin/master
 control\LoginC.class
 dao\DashboardImpl.class
 dao\EmpleadoImpl.class
 control\VentaC.class
 dao\Login.class
 control\ClienteC.class
+dao\VenDeImpl.class
 Reportes\report.class
 dao\ICRUD.class
 dao\PeliculaImpl.class
@@ -20,6 +26,7 @@ services\ConvertirSexo.class
 controlador\PeliculaC.class
 modelo\NPelicula.class
 control\CarteleraC.class
+control\VenDetC.class
 modelo\Venta.class
 modelo\Empleado.class
 services\Session.class
