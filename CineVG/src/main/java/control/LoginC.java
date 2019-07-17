@@ -1,5 +1,5 @@
 package control;
-
+import services.Encriptar;
 import dao.Login;
 import java.io.IOException;
 import javax.inject.Named;
@@ -26,7 +26,7 @@ public class LoginC implements Serializable {
         Login dao;
         try {
             dao = new Login();
-            empleado = dao.startSession(USUEMP, PWDEMP);
+            empleado = dao.startSession(USUEMP, Encriptar.encriptar(PWDEMP));
             if (empleado != null) {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("username", empleado);
                 switch (empleado.getTIPEMP()) {

@@ -1,31 +1,31 @@
-D:\CineVG\CineVG\src\main\java\modelo\Pelicula.java
-D:\CineVG\CineVG\src\main\java\Reportes\report.java
-D:\CineVG\CineVG\src\main\java\dao\PeliculaImpl.java
-D:\CineVG\CineVG\src\main\java\control\VenDetC.java
-D:\CineVG\CineVG\src\main\java\dao\ClienteImpl.java
-D:\CineVG\CineVG\src\main\java\services\Session.java
-D:\CineVG\CineVG\src\main\java\dao\DashboardImpl.java
-D:\CineVG\CineVG\src\main\java\dao\ICRUD.java
-D:\CineVG\CineVG\src\main\java\dao\EmpleadoImpl.java
-D:\CineVG\CineVG\src\main\java\services\ConvertirSexo.java
-D:\CineVG\CineVG\src\main\java\dao\CarteleraImpl.java
-D:\CineVG\CineVG\src\main\java\dao\VenDeImpl.java
-D:\CineVG\CineVG\src\main\java\dao\VentaImpl.java
-D:\CineVG\CineVG\src\main\java\services\Encriptar.java
-D:\CineVG\CineVG\src\main\java\modelo\Cartelera.java
-D:\CineVG\CineVG\src\main\java\dao\Conexion.java
-D:\CineVG\CineVG\src\main\java\control\ClienteC.java
-D:\CineVG\CineVG\src\main\java\modelo\VenDetalle.java
-D:\CineVG\CineVG\src\main\java\dao\SalaImpl.java
-D:\CineVG\CineVG\src\main\java\modelo\Sala.java
-D:\CineVG\CineVG\src\main\java\dao\Login.java
-D:\CineVG\CineVG\src\main\java\control\LoginC.java
-D:\CineVG\CineVG\src\main\java\modelo\NPelicula.java
-D:\CineVG\CineVG\src\main\java\control\PeliculaC.java
-D:\CineVG\CineVG\src\main\java\control\SalaC.java
-D:\CineVG\CineVG\src\main\java\modelo\Empleado.java
-D:\CineVG\CineVG\src\main\java\modelo\Venta.java
-D:\CineVG\CineVG\src\main\java\modelo\Cliente.java
-D:\CineVG\CineVG\src\main\java\control\EmpleadoC.java
-D:\CineVG\CineVG\src\main\java\control\VentaC.java
-D:\CineVG\CineVG\src\main\java\control\CarteleraC.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\control\SalaC.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\control\CarteleraC.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\services\Encriptar.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\modelo\Venta.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\modelo\Sala.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\control\VentaC.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\dao\PeliculaImpl.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\control\EmpleadoC.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\control\LoginC.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\dao\DashboardImpl.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\control\VenDetC.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\dao\ClienteImpl.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\modelo\Cliente.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\modelo\Cartelera.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\Reportes\report.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\modelo\Pelicula.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\dao\VenDeImpl.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\dao\Login.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\dao\ICRUD.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\dao\Conexion.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\modelo\Empleado.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\control\PeliculaC.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\dao\SalaImpl.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\services\Session.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\control\ClienteC.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\dao\EmpleadoImpl.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\dao\CarteleraImpl.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\modelo\NPelicula.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\modelo\VenDetalle.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\dao\VentaImpl.java
+C:\Users\Marcos Alarcon\Documents\ProyectosNetbeans\02AM\CineVG\CineVG\src\main\java\services\ConvertirSexo.java

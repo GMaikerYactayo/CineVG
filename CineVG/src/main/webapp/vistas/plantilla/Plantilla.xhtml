@@ -5,7 +5,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <head>
-        <title>Free CSS template by ChocoTemplates.com</title>
+        <title>CineVG</title>
     <f:event type="preRenderView" listener="#{loginC.securitySession()}"/>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <link href="../../recursos/vendors/mdi/css/materialdesignicons.min.css" rel="stylesheet" type="text/css"/>
@@ -35,7 +35,7 @@
 
                 <ul class="navbar-nav navbar-nav-right">
 
-
+                    
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="profileDropdown">
                             <span class="nav-profile-name">Administrador</span>
@@ -71,28 +71,32 @@
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                             <i class="mdi mdi-circle-outline menu-icon"></i>
-                            <span class="menu-title">MM Mantenimiento</span>
+                            <span class="menu-title">Maestras</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="../pelicula/Pelicula.xhtml" target="vistaI">Peliculas</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="../cartelera/LstCartelera.xhtml" target="vistaI">Cartelera</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../pelicula/Pelicula.xhtml" target="vistaI">PELICULAS</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../cartelera/LstCartelera.xhtml" target="vistaI">CARTELERA</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../cliente/Cliente.xhtml" target="vistaI">CLIENTE</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../sala/LstSala.xhtml" target="vistaI">SALA</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../Empleado/Empleado.xhtml" target="vistaI">EMPLEADO</a></li>
                             </ul>
                         </div>
-                    </li>
+                    </li>   
                     <li class="nav-item">
-                        <a class="nav-link" href="../cliente/Cliente.xhtml" target="vistaI">
-                            <i class="mdi mdi-view-headline menu-icon"></i>
-                            <span class="menu-title">Cliente</span>
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                            <i class="mdi mdi-circle-outline menu-icon"></i>
+                            <span class="menu-title">Transaccional</span>
+                            <i class="menu-arrow"></i>
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../sala/LstSala.xhtml">
-                            <i class="mdi mdi-chart-pie menu-icon"></i>
-                            <span class="menu-title">Sala</span>
-                        </a>
-                    </li>
+                        <div class="collapse" id="ui-basic">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="../venta/LstVenta.xhtml" target="vistaI">VENTA</a></li>
+
+                            </ul>
+                        </div>
+                    </li>   
                 </ul>
             </nav>
             <!-- partial -->
