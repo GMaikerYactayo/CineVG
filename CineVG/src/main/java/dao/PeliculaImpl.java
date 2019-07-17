@@ -3,7 +3,6 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.Pelicula;
@@ -24,24 +23,15 @@ public class PeliculaImpl extends Conexion implements ICRUD<Pelicula> {
             ps.setString(6, pelicula.getDURPEL());
             ps.setString(7, pelicula.getHORPEL());
             ps.setString(8, pelicula.getFECPEL());
-<<<<<<< HEAD
-<<<<<<< HEAD
-            ps.setString(9, pelicula.getFOTPEL());
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error: " + e);
             throw e;
-=======
-=======
->>>>>>> origin/master
 
         } catch (Exception e) {
             System.out.println("Error: " + e);
             e.printStackTrace();
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
->>>>>>> origin/master
+
         } finally {
             this.Cerrar();
         }
@@ -51,16 +41,9 @@ public class PeliculaImpl extends Conexion implements ICRUD<Pelicula> {
     public void modificar(Pelicula pelicula) throws Exception {
         try {
             this.conectar();
-<<<<<<< HEAD
-<<<<<<< HEAD
+
             String sql = "UPDATE PELICULA SET NOMPEL = ?,GENPEL=?,RESTPEL=?,TIPPEL=?,LENPEL=?,DURPEL=?,HORPEL=?,FECPEL=?,ESTPEL=?,FOTPEL=? WHERE IDPEL LIKE ?";
             PreparedStatement ps = this.getCn().prepareStatement(sql);
-=======
-=======
->>>>>>> origin/master
-            String sql = "UPDATE PELICULA SET NOMPEL=?,GENPEL=?,RESTPEL=?,TIPPEL=?,LENPEL=?,DURPEL=?,HORPEL=?,FECPEL=?,ESTPEL=? WHERE IDPEL LIKE ?";
-            PreparedStatement ps = this.getCn().prepareCall(sql);
->>>>>>> origin/master
             ps.setString(1, pelicula.getNOMPEL());
             ps.setString(2, pelicula.getGENPEL());
             ps.setString(3, pelicula.getRESTPEL());
@@ -74,7 +57,7 @@ public class PeliculaImpl extends Conexion implements ICRUD<Pelicula> {
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
-             System.out.println("error en update" + e.getMessage());
+            System.out.println("error en update" + e.getMessage());
             throw e;
         } finally {
             this.Cerrar();
@@ -119,28 +102,13 @@ public class PeliculaImpl extends Conexion implements ICRUD<Pelicula> {
                 car.setFECPEL(rs.getString("FECPEL"));
                 car.setESTPEL(rs.getString("ESTPEL"));
                 listado.add(car);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
-=======
-
->>>>>>> origin/master
             }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-            return listado;
->>>>>>> origin/master
-=======
-            return listado;
->>>>>>> origin/master
         } catch (SQLException e) {
             throw e;
         } finally {
             this.Cerrar();
         }
+        return listado;
     }
 
     @Override

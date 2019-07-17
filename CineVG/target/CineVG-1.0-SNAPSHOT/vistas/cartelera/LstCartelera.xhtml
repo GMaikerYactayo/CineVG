@@ -6,28 +6,56 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:fn="http://java.sun.com/jsp/jstl/functions">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Cartelera</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
     </h:head>
     <h:body>
-        
-        <p:growl showDetail="true" id="messages" />
-        <center>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+        <h:form>
+            <p:growl showDetail="true" id="messages" />
             <h:form id="formIns">
                 <h1 style="margin-top:0">Registrar cartelera</h1>
                 <p:panelGrid columns="4">
                     <p:outputLabel value="Pelicula"/>
                     <p:autoComplete  value="#{carteleraC.cartelera.IDPEL}" completeMethod="#{carteleraC.completeTextPelicula}" required="true" requiredMessage="Se necesita la pelicula"/>
                     <p:outputLabel value="Hora"/>
-                    <p:inputText value="#{carteleraC.cartelera.HORCAR}" maxlength="50" required="true" requiredMessage="Se necesita la hora"/>
+                    <p:inputMask value="#{carteleraC.cartelera.HORCAR}" mask="99:99" required="true" requiredMessage="Se nesecita la hora"/>
                     <p:outputLabel value="Fecha"   />
                     <p:calendar id="button" value="#{carteleraC.fechaFormulario}"  showOn="button" navigator="true" pattern="dd/MMM/yyyy" 
                                 required="true" style="width: 400px" requiredMessage="Se requiere la fecha"/>
                     <p:outputLabel value="Precio"/>
-                    <p:inputText value="#{carteleraC.cartelera.PRECAR}" maxlength="11" required="true" requiredMessage="Se nesecita el precio"/>
+                    <p:inputMask value="#{carteleraC.cartelera.PRECAR}" mask="9.99" required="true" requiredMessage="Se nesecita el precio"/>
                 </p:panelGrid>
-                <p:commandButton value="Registrar" actionListener="#{carteleraC.registrar()}" update="formIns :form:dtTable"/> 
+                <p:commandButton value="Registrar" actionListener="#{carteleraC.registrar()}" /> 
             </h:form>
-        </center>
+=======
+>>>>>>> origin/master
+        <ui:composition template="../Menu/Menu.xhtml">
+            <ui:define name="menu">
+                <h:form>
+                    <p:growl showDetail="true" id="messages" />
+                    <h:form id="formIns">
+                        <h1 style="margin-top:0">Registrar cartelera</h1>
+                        <p:panelGrid columns="4">
+                            <p:outputLabel value="Pelicula"/>
+                            <p:autoComplete  value="#{carteleraC.cartelera.IDPEL}" completeMethod="#{carteleraC.completeTextPelicula}" required="true" requiredMessage="Se necesita la pelicula"/>
+                            <p:outputLabel value="Hora"/>
+                            <p:inputMask value="#{carteleraC.cartelera.HORCAR}" mask="99:99" required="true" requiredMessage="Se nesecita la hora"/>
+                            <p:outputLabel value="Fecha"   />
+                            <p:calendar id="button" value="#{carteleraC.fechaFormulario}"  showOn="button" navigator="true" pattern="dd/MMM/yyyy" 
+                                        required="true" style="width: 400px" requiredMessage="Se requiere la fecha"/>
+                            <p:outputLabel value="Precio"/>
+                            <p:inputMask value="#{carteleraC.cartelera.PRECAR}" mask="9.99" required="true" requiredMessage="Se nesecita el precio"/>
+                        </p:panelGrid>
+                        <p:commandButton value="Registrar" actionListener="#{carteleraC.registrar()}" /> 
+                    </h:form>
+>>>>>>> origin/master
+
+        </h:form>
 
         <p:spacer/>
         <h:form id="form">
@@ -39,15 +67,11 @@
                          selection="#{carteleraC.cartelera}"
                          paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                          paginator="true" 
-                         rowKey="#{lista.IDPEL}"
+                         rowKey="#{lista.IDCAR}"
                          rows="6" 
                          style="margin-bottom:20px">
-                
+
                 <p:autoUpdate />
-                
-                <f:facet name="header">
-                    CARTELERA
-                </f:facet>
 
                 <p:column headerText="Pelicula" filterBy="#{lista.IDPEL}" filterMatchMode="contains">
                     <center>
@@ -79,9 +103,10 @@
             </p:dataTable>
             <p:contextMenu for="dtTable">
                 <p:menuitem value="Modificar" update=":dlgDatos" icon="ui-icon-pencil"  oncomplete="PF('wdlgDatos').show()"/>
-                <p:menuitem value="Eliminar" update=":messages :form" icon="ui-icon-circle-close" action="#{carteleraC.eliminar()}"/>
+                <p:menuitem value="Eliminar" update=":form" icon="ui-icon-circle-close" action="#{carteleraC.eliminar()}"/>
             </p:contextMenu>
 
+<<<<<<< HEAD
         </h:form>
         <p:dialog id="dlgDatos" widgetVar="wdlgDatos" >
             <h:form>
@@ -89,20 +114,49 @@
                     <p:outputLabel value="Pelicula"/>
                     <p:autoComplete  value="#{carteleraC.cartelera.IDPEL}" completeMethod="#{carteleraC.completeTextPelicula}" required="true" requiredMessage="Se necesita la pelicula"/>
                     <p:outputLabel value="Hora"/>
-                    <p:inputText value="#{carteleraC.cartelera.HORCAR}" maxlength="50" required="true" requiredMessage="Se necesita la hora"/>
+                    <p:inputMask value="#{carteleraC.cartelera.HORCAR}" mask="99:99" required="true" requiredMessage="Se nesecita la hora"/>
                     <p:outputLabel value="Fecha"   />
                     <p:calendar id="button" value="#{carteleraC.fechaFormulario}"  showOn="button" navigator="true" pattern="dd/MMM/yyyy" 
                                 required="true" style="width: 400px" requiredMessage="Se requiere la fecha"/>
                     <p:outputLabel value="Precio"/>
-                    <p:inputText value="#{carteleraC.cartelera.PRECAR}" maxlength="11" required="true" requiredMessage="Se nesecita el precio"/>
+                    <p:inputMask value="#{carteleraC.cartelera.PRECAR}" mask="9.99" required="true" requiredMessage="Se nesecita el precio"/>
                 </p:panelGrid>
                 <p:commandButton value="Actualizar" actionListener="#{carteleraC.modificar()}"
-                                 update=":form :messages" oncomplete="PF('wdlgDatos').hide();">
+                                 update=":form:dtTable" oncomplete="PF('wdlgDatos').hide();">
                     <p:tooltip trackMouse="true"/>
                 </p:commandButton>
                 <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
             </h:form>
         </p:dialog>
+
+=======
+                </h:form>
+                <p:dialog id="dlgDatos" widgetVar="wdlgDatos" >
+                    <h:form>
+                        <p:panelGrid columns="4">
+                            <p:outputLabel value="Pelicula"/>
+                            <p:autoComplete  value="#{carteleraC.cartelera.IDPEL}" completeMethod="#{carteleraC.completeTextPelicula}" required="true" requiredMessage="Se necesita la pelicula"/>
+                            <p:outputLabel value="Hora"/>
+                            <p:inputMask value="#{carteleraC.cartelera.HORCAR}" mask="99:99" required="true" requiredMessage="Se nesecita la hora"/>
+                            <p:outputLabel value="Fecha"   />
+                            <p:calendar id="button" value="#{carteleraC.fechaFormulario}"  showOn="button" navigator="true" pattern="dd/MMM/yyyy" 
+                                        required="true" style="width: 400px" requiredMessage="Se requiere la fecha"/>
+                            <p:outputLabel value="Precio"/>
+                            <p:inputMask value="#{carteleraC.cartelera.PRECAR}" mask="9.99" required="true" requiredMessage="Se nesecita el precio"/>
+                        </p:panelGrid>
+                        <p:commandButton value="Actualizar" actionListener="#{carteleraC.modificar()}"
+                                         update=":form:dtTable" oncomplete="PF('wdlgDatos').hide();">
+                            <p:tooltip trackMouse="true"/>
+                        </p:commandButton>
+                        <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                    </h:form>
+                </p:dialog>
+            </ui:define>
+        </ui:composition>
+<<<<<<< HEAD
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
     </h:body>
 </html>
 

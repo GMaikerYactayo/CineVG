@@ -1,30 +1,14 @@
-package controlador;
+package control;
 
 import Reportes.report;
 import dao.DashboardImpl;
 import dao.PeliculaImpl;
 import java.io.Serializable;
-
 import java.sql.SQLException;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import java.util.ArrayList;
-=======
 import java.util.HashMap;
->>>>>>> origin/master
-=======
-import java.util.HashMap;
->>>>>>> origin/master
 import java.util.List;
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
 import java.util.Map;
->>>>>>> origin/master
-=======
-import java.util.Map;
->>>>>>> origin/master
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -68,8 +52,6 @@ public class PeliculaC implements Serializable {
 
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     public PeliculaC() {
         PeliculaImpl dao = new PeliculaImpl();
         pelicula = new Pelicula();
@@ -79,12 +61,6 @@ public class PeliculaC implements Serializable {
 
     public void lstCantPeli() throws Exception {
         System.out.println("eee");
-=======
-    public void lstCantPeli() throws Exception {
->>>>>>> origin/master
-=======
-    public void lstCantPeli() throws Exception {
->>>>>>> origin/master
         DashboardImpl dao;
         try {
             dao = new DashboardImpl();
@@ -148,18 +124,6 @@ public class PeliculaC implements Serializable {
             listar();
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminando", "completado..."));
-        } catch (Exception e) {
-            throw e;
-        }
-    }
-
-    public void REPORTEPELICULA(String idcli) throws Exception {
-        report reportPELICULA = new report();
-        try {
-            Map<String, Object> parameters = new HashMap(); // Libro de parametros
-            parameters.put(null, idcli); //Insertamos un parametro
-            reportPELICULA.exportarPELICULA(parameters); //Pido exportar Reporte con los parametros
-//            report.exportarPDF2(parameters);
         } catch (Exception e) {
             throw e;
         }
