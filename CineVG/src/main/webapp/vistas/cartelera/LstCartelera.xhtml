@@ -11,7 +11,8 @@
 
     </h:head>
     <h:body>
-
+        <ui:composition template="../Menu/Menu.xhtml">
+            <ui:define name="menu">
                 <h:form>
                     <p:growl showDetail="true" id="messages" />
                     <h:form id="formIns">
@@ -102,7 +103,8 @@
                         <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
                     </h:form>
                 </p:dialog>
-
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 

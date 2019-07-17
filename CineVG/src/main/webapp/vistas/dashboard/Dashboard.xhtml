@@ -8,8 +8,12 @@
 
     </h:head>
     <h:body>
-        <h:form >
-            <p:chart type="bar" model="#{peliculaC.barra}" style="width:500px;height:300px"/>
-        </h:form>
+        <ui:composition template="../Menu/Menu.xhtml">
+            <ui:define name="menu">
+                <h:form >
+                    <p:chart type="bar" model="#{peliculaC.barra}" style="width:500px;height:300px"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
