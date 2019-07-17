@@ -5,6 +5,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,6 +13,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import modelo.VenDetalle;
+import org.primefaces.component.row.Row;
+import org.primefaces.event.SelectEvent;
 
 @Named(value = "venDetC")
 @SessionScoped
@@ -22,12 +25,14 @@ public class VenDetC implements Serializable {
     private VenDetalle modelo;
     private VenDetalle select;
     private VenDeImpl dao;
+    int index = 0;
 
     public VenDetC() {
         modelo = new VenDetalle();
         select = new VenDetalle();
         listadoDet = new ArrayList();
         dao = new VenDeImpl();
+
     }
 
     @PostConstruct
@@ -81,25 +86,31 @@ public class VenDetC implements Serializable {
 
     public void newItem() {
         try {
-            if (listadoVista.size() < 1) {
-                modelo.setIDDETVEN(0);
-            }else{
-//                modelo.setIDDETVEN(listadoDet.);
+            if (listadoVista.isEmpty()) {
+                index = 0;
+            } else {
+                index++;
             }
-            System.out.println(modelo.getIDDETVEN());
+            modelo.setIDDETVEN(index);
             this.listadoVista.add(modelo);
             limpiar();
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Exitoso", "Registro Exitoso."));
         } catch (Exception ex) {
+            System.out.println(ex.getMessage());
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error del Sistema", "Estamos trabajando en ello."));
         }
     }
-    
+
     public void deleteItem() throws Exception {
         try {
-            listadoVista.remove(select.getIDDETVEN());
+            for (Iterator<VenDetalle> iterator = listadoVista.iterator(); iterator.hasNext();) {
+                VenDetalle next = iterator.next();
+                if (select.getIDDETVEN() == next.getIDDETVEN()) {
+                    iterator.remove();
+                }
+            }
             limpiar();
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Exitoso", "Eliminación Exitosa."));

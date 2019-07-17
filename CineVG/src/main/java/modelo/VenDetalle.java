@@ -11,6 +11,7 @@ public class VenDetalle {
     
     private String NOMPEL;
     private int NUMSAL;
+    private String INDEX;
 
     public VenDetalle() {
     }
@@ -91,6 +92,11 @@ public class VenDetalle {
         this.NUMSAL = NUMSAL;
     }
 
-    
-    
+    public String getINDEX() {
+        return INDEX;
+    }
+
+    public void setINDEX(String INDEX) {
+        this.INDEX = INDEX;
+    }    
 }

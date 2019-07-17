@@ -64,13 +64,13 @@
                          id="dtTable" 
                          selectionMode="single"
                          selection="#{venDetC.select}"
-                         paginator="true"
+                         paginator="true" rowIndexVar="index"
                          rowKey="#{l_vendeta.IDDETVEN}">
                 <p:column headerText="Pelicula">
                     <h:outputText value="#{l_vendeta.NOMPEL}" />
                 </p:column>
                 <p:column headerText="Sala">
-                    <h:outputText value="#{l_vendeta.NUMSAL}" />
+                    <h:outputText value="#{l_vendeta.setINDEX(INDEX)}" />
                 </p:column>
                 <p:column headerText="Entradas" >
                     <h:outputText value="#{l_vendeta.CATVEN}" />
