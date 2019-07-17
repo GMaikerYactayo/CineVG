@@ -13,13 +13,13 @@ import modelo.Venta;
 @Named(value = "ventaC")
 @SessionScoped
 public class VentaC implements Serializable {
-    List<Venta> lista;
+    private List<Venta> listadoVen;
     private Venta modelo;
     private VentaImpl dao;
 
     public VentaC() {
         modelo = new Venta();
-        lista = new ArrayList();
+        listadoVen = new ArrayList();
         dao = new VentaImpl();
     }
 
@@ -35,7 +35,64 @@ public class VentaC implements Serializable {
         }
     }
     
+    public void modificar() throws Exception{
+        try {
+            dao.modificar(modelo);
+            FacesContext.getCurrentInstance().addMessage(null, 
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Exitoso", "Registro Exitoso."));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, 
+                    new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error del Sistema", "Estamos trabajando en ello."));
+            throw e;
+        }
+    }
+    
+    public void eliminar() throws Exception{
+        try {
+            dao.eliminar(modelo);
+            FacesContext.getCurrentInstance().addMessage(null, 
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Exitoso", "Registro Exitoso."));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, 
+                    new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error del Sistema", "Estamos trabajando en ello."));
+            throw e;
+        }
+    }
+    
+    public void limpiar() throws Exception{
+        try {
+            dao = new VentaImpl();
+            FacesContext.getCurrentInstance().addMessage(null, 
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Exitoso", "Registro Exitoso."));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, 
+                    new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error del Sistema", "Estamos trabajando en ello."));
+            throw e;
+        }
+    }
+    public void listar() throws Exception{
+        try {
+            listadoVen = dao.listar();
+            FacesContext.getCurrentInstance().addMessage(null, 
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Exitoso", "Registro Exitoso."));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, 
+                    new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error del Sistema", "Estamos trabajando en ello."));
+            throw e;
+        }
+    }
+    
+    
     /*Getter and Setter*/
+
+    public List<Venta> getListadoVen() {
+        return listadoVen;
+    }
+
+    public void setListadoVen(List<Venta> listadoVen) {
+        this.listadoVen = listadoVen;
+    }
+
     public Venta getModelo() {
         return modelo;
     }
@@ -51,5 +108,7 @@ public class VentaC implements Serializable {
     public void setDao(VentaImpl dao) {
         this.dao = dao;
     }
-
+    
+    
+    
 }

@@ -2,18 +2,19 @@ package modelo;
 
 public class Cartelera {
 
-    private String IDCAR;
+    private int IDCAR;
     private String PRECAR;
     private String HORCAR;
     private String FECCAR;
     private String IDPEL;
     private String ESTCAR;
+    private String NOMPEL;
 
-    public String getIDCAR() {
+    public int getIDCAR() {
         return IDCAR;
     }
 
-    public void setIDCAR(String IDCAR) {
+    public void setIDCAR(int IDCAR) {
         this.IDCAR = IDCAR;
     }
 
@@ -57,6 +58,14 @@ public class Cartelera {
         this.ESTCAR = ESTCAR;
     }
 
-    
+    public String getNOMPEL() {
+        return NOMPEL;
+    }
+
+    public void setNOMPEL(String NOMPEL) {
+        this.NOMPEL = NOMPEL;
+    }
+
+        
     
 }
