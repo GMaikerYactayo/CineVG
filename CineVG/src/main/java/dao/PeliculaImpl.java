@@ -14,7 +14,7 @@ public class PeliculaImpl extends Conexion implements ICRUD<Pelicula> {
     public void registrar(Pelicula pelicula) throws Exception {
         try {
             this.conectar();
-            String sql = "INSERT INTO PELICULA(NOMPEL,GENPEL,RESTPEL,TIPPEL,LENPEL,DURPEL,HORPEL,FECPEL,FOTPEL) VALUES (?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO PELICULA(NOMPEL,GENPEL,RESTPEL,TIPPEL,LENPEL,DURPEL,HORPEL,FECPEL) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = this.getCn().prepareStatement(sql);
             ps.setString(1, pelicula.getNOMPEL());
             ps.setString(2, pelicula.getGENPEL());
@@ -24,11 +24,18 @@ public class PeliculaImpl extends Conexion implements ICRUD<Pelicula> {
             ps.setString(6, pelicula.getDURPEL());
             ps.setString(7, pelicula.getHORPEL());
             ps.setString(8, pelicula.getFECPEL());
+<<<<<<< HEAD
             ps.setString(9, pelicula.getFOTPEL());
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error: " + e);
             throw e;
+=======
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+            e.printStackTrace();
+>>>>>>> origin/master
         } finally {
             this.Cerrar();
         }
@@ -38,8 +45,13 @@ public class PeliculaImpl extends Conexion implements ICRUD<Pelicula> {
     public void modificar(Pelicula pelicula) throws Exception {
         try {
             this.conectar();
+<<<<<<< HEAD
             String sql = "UPDATE PELICULA SET NOMPEL = ?,GENPEL=?,RESTPEL=?,TIPPEL=?,LENPEL=?,DURPEL=?,HORPEL=?,FECPEL=?,ESTPEL=?,FOTPEL=? WHERE IDPEL LIKE ?";
             PreparedStatement ps = this.getCn().prepareStatement(sql);
+=======
+            String sql = "UPDATE PELICULA SET NOMPEL=?,GENPEL=?,RESTPEL=?,TIPPEL=?,LENPEL=?,DURPEL=?,HORPEL=?,FECPEL=?,ESTPEL=? WHERE IDPEL LIKE ?";
+            PreparedStatement ps = this.getCn().prepareCall(sql);
+>>>>>>> origin/master
             ps.setString(1, pelicula.getNOMPEL());
             ps.setString(2, pelicula.getGENPEL());
             ps.setString(3, pelicula.getRESTPEL());
@@ -49,8 +61,7 @@ public class PeliculaImpl extends Conexion implements ICRUD<Pelicula> {
             ps.setString(7, pelicula.getHORPEL());
             ps.setString(8, pelicula.getFECPEL());
             ps.setString(9, pelicula.getESTPEL());
-            ps.setString(10, pelicula.getFOTPEL());
-            ps.setString(11, pelicula.getIDPEL());
+            ps.setString(10, pelicula.getIDPEL());
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
@@ -98,15 +109,21 @@ public class PeliculaImpl extends Conexion implements ICRUD<Pelicula> {
                 car.setHORPEL(rs.getString("HORPEL"));
                 car.setFECPEL(rs.getString("FECPEL"));
                 car.setESTPEL(rs.getString("ESTPEL"));
-                car.setFOTPEL(rs.getString("FOTPEL"));
                 listado.add(car);
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
             }
+<<<<<<< HEAD
+=======
+            return listado;
+>>>>>>> origin/master
         } catch (SQLException e) {
             throw e;
         } finally {
             this.Cerrar();
         }
-        return listado;
     }
 
     @Override

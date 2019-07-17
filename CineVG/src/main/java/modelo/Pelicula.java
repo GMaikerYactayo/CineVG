@@ -12,7 +12,6 @@ public class Pelicula {
     private String HORPEL;
     private String FECPEL;
     private String ESTPEL;
-    private String FOTPEL;
 
     public String getIDPEL() {
         return IDPEL;
@@ -94,12 +93,6 @@ public class Pelicula {
         this.ESTPEL = ESTPEL;
     }
 
-    public String getFOTPEL() {
-        return FOTPEL;
-    }
 
-    public void setFOTPEL(String FOTPEL) {
-        this.FOTPEL = FOTPEL;
-    }
 
 }

@@ -12,183 +12,194 @@
     </h:head>
 
     <h:body>
-        <p:growl showDetail="true" id="messages" />
-        <h:form id="form">
-            <p:dataTable  value="#{empleadoC.listadoEmp}"
-                          filteredValue="#{empleadoC.filterEmp}"
-                          var="lista" id="dtTable" emptyMessage="REGISTRO NO ENCONTRADO, ASEGURESE DE HABERLO REGISTRADO."
-                          paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                          paginator="true" rows="10" widgetVar="wdlaData">
-                <f:facet name="header">
-                    <h3 align="center" > <b><i><H2>REGISTRO DE EMPLEADOS</H2></i></b></h3>               
-                </f:facet>
+        <ui:composition template="../Menu/Menu.xhtml">
+            <ui:define name="menu">
+                <p:growl showDetail="true" id="messages" />
+                <h:form id="form">
+                    <p:dataTable  value="#{empleadoC.listadoEmp}"
+                                  filteredValue="#{empleadoC.filterEmp}"
+                                  var="lista" id="dtTable" emptyMessage="REGISTRO NO ENCONTRADO, ASEGURESE DE HABERLO REGISTRADO."
+                                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                  paginator="true" rows="10" widgetVar="wdlaData">
+                        <f:facet name="header">
+                            <h3 align="center" > <b><i><H2>REGISTRO DE EMPLEADOS</H2></i></b></h3>               
+                        </f:facet>
 
-                <f:facet name="header">
-                    <p:commandButton value="Agregar Registro" 
-                                     style="background: azure"
-                                     oncomplete="PF('wdlgRegistrar').show();" 
-                                     icon="ui-icon-pencil" />
-                </f:facet>            
+                        <f:facet name="header">
+                            <p:commandButton value="Agregar Registro" 
+                                             style="background: azure"
+                                             oncomplete="PF('wdlgRegistrar').show();" 
+                                             icon="ui-icon-pencil" />
+                        </f:facet>            
 
-                <f:facet name="header">
-                    <p:outputPanel>
-                        <h:outputText value="BUSCAR EMPLEADO:"/>
-                        <p:inputText id="globalFilter" onkeyup="PF('wdlaData').filter()" />
-                    </p:outputPanel>
-                </f:facet>
+                        <f:facet name="header">
+                            <p:outputPanel>
+                                <h:outputText value="BUSCAR EMPLEADO:"/>
+                                <p:inputText id="globalFilter" onkeyup="PF('wdlaData').filter()" />
+                            </p:outputPanel>
+                        </f:facet>
 
-                <p:column style="width: 5px">
-                    <p:rowToggler />
-                </p:column>
+                        <p:column style="width: 5px">
+                            <p:rowToggler />
+                        </p:column>
 
-                <p:column filterBy="#{lista.APEEMP}, #{lista.NOMEMP}" style="width: 240px;font-size: 15px"  headerText="Apellidos y Nombre(s)" filterMatchMode="contains">
-                    <h:outputText value="#{lista.APEEMP}, #{lista.NOMEMP}"/>
-                </p:column>
+                        <p:column filterBy="#{lista.APEEMP}, #{lista.NOMEMP}" style="width: 240px;font-size: 15px"  headerText="Apellidos y Nombre(s)" filterMatchMode="contains">
+                            <h:outputText value="#{lista.APEEMP}, #{lista.NOMEMP}"/>
+                        </p:column>
 
-                <p:column filterBy="#{lista.DNIEMP}" style="width: 80px; text-align: center;font-size: 15px"  headerText="N° de DNI" filterMatchMode="contains" >
-                    <h:outputText value="#{lista.DNIEMP}" />
-                </p:column>
+                        <p:column filterBy="#{lista.DNIEMP}" style="width: 80px; text-align: center;font-size: 15px"  headerText="N° de DNI" filterMatchMode="contains" >
+                            <h:outputText value="#{lista.DNIEMP}" />
+                        </p:column>
 
-                <p:column style="width: 35px; text-align: center;font-size: 15px"  headerText="SEXO" >
-                    <center>
-                        <h:outputText value="#{lista.SEXEMP eq 'M' ? 'Masculino' :''}"/>
-                        <h:outputText value="#{lista.SEXEMP eq 'F' ? 'Femenino' :''}"/>   
-                    </center>
-                </p:column>  
+                        <p:column style="width: 35px; text-align: center;font-size: 15px"  headerText="SEXO" >
+                            <center>
+                                <h:outputText value="#{lista.SEXEMP eq 'M' ? 'Masculino' :''}"/>
+                                <h:outputText value="#{lista.SEXEMP eq 'F' ? 'Femenino' :''}"/>   
+                            </center>
+                        </p:column>  
 
-                <p:column style="width: 170px;font-size: 15px"  headerText="Dirección">                 
-                    <h:outputText value="#{lista.DIREMP}"/>
-                </p:column>
+                        <p:column style="width: 170px;font-size: 15px"  headerText="Dirección">                 
+                            <h:outputText value="#{lista.DIREMP}"/>
+                        </p:column>
 
-                <p:column style="width: 210px; font-size: 15px"  headerText="Procedencia">                 
-                    <h:outputText value="#{lista.CODUBI}"/>
-                </p:column>
+                        <p:column style="width: 210px; font-size: 15px"  headerText="Procedencia">                 
+                            <h:outputText value="#{lista.CODUBI}"/>
+                        </p:column>
 
-                <p:column  style="width: 10px"><!--MODIFICAR REGISTRO-->
-                    <p:commandButton id="Modificar"
-                                     style="background: #14b4fc"
-                                     icon="ui-icon-pencil" 
-                                     actionListener="#{empleadoC.modificar()}" 
-                                     oncomplete="if(args &amp;&amp; !args.validationFailed)PF('wdlgDatos').show();"
-                                     update="">
-                        <p:tooltip style="background: ligthcyan" for="Modificar" value="MODIFICAR"
-                                   showEffect="clip" hideEffect="explode" position="left"/>                  
-                    </p:commandButton>
-                </p:column> 
+                        <p:column  style="width: 10px"><!--MODIFICAR REGISTRO-->
+                            <p:commandButton id="Modificar"
+                                             style="background: #14b4fc"
+                                             icon="ui-icon-pencil" 
+                                             actionListener="#{empleadoC.modificar()}" 
+                                             oncomplete="if(args &amp;&amp; !args.validationFailed)PF('wdlgDatos').show();"
+                                             update="">
+                                <p:tooltip style="background: ligthcyan" for="Modificar" value="MODIFICAR"
+                                           showEffect="clip" hideEffect="explode" position="left"/>                  
+                            </p:commandButton>
+                        </p:column> 
 
-                <p:column style="width: 10px"> <!--ELIMINAR REGISTRO-->
-                    <p:commandButton id="Eliminar"
-                                     style="background: #FF5722"
-                                     icon="ui-icon-trash" 
-                                     actionListener="#{empleadoC.eliminar(lista)}" 
-                                     update="dtTable">
-                        <p:tooltip  style="background-color: salmon" for="Eliminar" value="ELIMINAR"
-                                    showEffect="clip" hideEffect="explode" position="left"/>
-                        <p:confirm header="CONFIRMACIÓN:" message="¿DESEA ELIMINAR REGISTRO? " icon="ui-icon-alert" />
-                    </p:commandButton>
+                        <p:column style="width: 10px"> <!--ELIMINAR REGISTRO-->
+                            <p:commandButton id="Eliminar"
+                                             style="background: #FF5722"
+                                             icon="ui-icon-trash" 
+                                             actionListener="#{empleadoC.eliminar(lista)}" 
+                                             update="dtTable">
+                                <p:tooltip  style="background-color: salmon" for="Eliminar" value="ELIMINAR"
+                                            showEffect="clip" hideEffect="explode" position="left"/>
+                                <p:confirm header="CONFIRMACIÓN:" message="¿DESEA ELIMINAR REGISTRO? " icon="ui-icon-alert" />
+                            </p:commandButton>
 
-                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" 
-                                         icon="ui-icon-check" />
-                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" 
-                                         icon="ui-icon-close" />
-                    </p:confirmDialog>                                             
-                </p:column>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" 
+                                                 icon="ui-icon-check" />
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" 
+                                                 icon="ui-icon-close" />
+                            </p:confirmDialog>                                             
+                        </p:column>
 
-                <p:rowExpansion>
-                    <p:panelGrid columns="2" columnClasses="label, value" style="width:550px">
-                        <h:outputText value="Tipo de Usuario"/>
-                        <h:outputText value="#{lista.TIPEMP}"/>
-                        <h:outputText value="PARENTESCO Usuario"/> 
-                        <h:outputText value="#{lista.USUEMP}"/>
-                        <h:outputText value="Contraseña"/> 
-                        <h:outputText value="#{lista.PWDEMP}"/>
-                    </p:panelGrid>
-                </p:rowExpansion>
+                        <p:rowExpansion>
+                            <p:panelGrid columns="2" columnClasses="label, value" style="width:550px">
+                                <h:outputText value="Tipo de Usuario"/>
+                                <h:outputText value="#{lista.TIPEMP}"/>
+                                <h:outputText value="PARENTESCO Usuario"/> 
+                                <h:outputText value="#{lista.USUEMP}"/>
+                                <h:outputText value="Contraseña"/> 
+                                <h:outputText value="#{lista.PWDEMP}"/>
+                            </p:panelGrid>
+                        </p:rowExpansion>
 
-                <f:facet name="footer">
-                    En Total hay #{fn:length(empleadoC.listadoEmp)} Registros.
-                </f:facet>
+                        <f:facet name="footer">
+                            En Total hay #{fn:length(empleadoC.listadoEmp)} Registros.
+                        </f:facet>
+                        <f:facet name="header">
+                            <div style="float:right;padding-top: 5px;">
+                                <h:commandLink value="REPORTE" actionListener="#{empleadoC.REPORTEEMPLEADO(idcli)}">
+                                    <p:graphicImage url="../../recursos/images/favicon.png" width="35" title="Descargar Reporte"/>
+                                </h:commandLink>
+                            </div>
+                        </f:facet>
 
 
-                <!--FORMULARIO PARA REGISTRAR LOS DATOS DEL EMPLEADO-->
-                <p:dialog showEffect="explode" modal="false" hideEffect="explode" id="dlgDatos" widgetVar="wdlgDatos">
-                    <h3 align="center" > <b><i>ACTUALIZAR DATOS:</i></b></h3>
-                    <h:form> 
-                        <p:panelGrid columns="2" >
-                            <p:outputLabel value="Nombre(s):"/>
-                            <p:inputText value="#{empleadoC.empleado.NOMEMP}" maxlength="50"/>
-                            <p:outputLabel value="Apellidos:"/>
-                            <p:inputText value="#{empleadoC.empleado.APEEMP}" maxlength="50"/>
-                            <p:outputLabel value="N° de DNI:"/>
-                            <p:inputText value="#{empleadoC.empleado.DNIEMP}" maxlength="8">
-                                <p:keyFilter regEx="/[0-9_]/i"/> 
-                            </p:inputText>
-                            <p:outputLabel value="Dirección:"/>
-                            <p:inputText value="#{empleadoC.empleado.DIREMP}" maxlength="50"/>
-                            <p:outputLabel value="Sexo:"/>
-                            <p:selectOneRadio id="console" value="#{empleadoC.empleado.SEXEMP}">
-                                <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
-                                <f:selectItem itemLabel="Femenino" itemValue="Femenino" />
-                            </p:selectOneRadio>
-                            <p:outputLabel value="Procedencia:"/>
-                            <p:autoComplete id="idubi"  value="#{empleadoC.empleado.autUbi}" completeMethod="#{empleadoC.completeTextUbigeo}"/>
+                        <!--FORMULARIO PARA REGISTRAR LOS DATOS DEL EMPLEADO-->
+                        <p:dialog showEffect="explode" modal="false" hideEffect="explode" id="dlgDatos" widgetVar="wdlgDatos">
+                            <h3 align="center" > <b><i>ACTUALIZAR DATOS:</i></b></h3>
+                            <h:form> 
+                                <p:panelGrid columns="2" >
+                                    <p:outputLabel value="Nombre(s):"/>
+                                    <p:inputText value="#{empleadoC.empleado.NOMEMP}" maxlength="50"/>
+                                    <p:outputLabel value="Apellidos:"/>
+                                    <p:inputText value="#{empleadoC.empleado.APEEMP}" maxlength="50"/>
+                                    <p:outputLabel value="N° de DNI:"/>
+                                    <p:inputText value="#{empleadoC.empleado.DNIEMP}" maxlength="8">
+                                        <p:keyFilter regEx="/[0-9_]/i"/> 
+                                    </p:inputText>
+                                    <p:outputLabel value="Dirección:"/>
+                                    <p:inputText value="#{empleadoC.empleado.DIREMP}" maxlength="50"/>
+                                    <p:outputLabel value="Sexo:"/>
+                                    <p:selectOneRadio id="console" value="#{empleadoC.empleado.SEXEMP}">
+                                        <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+                                        <f:selectItem itemLabel="Femenino" itemValue="Femenino" />
+                                    </p:selectOneRadio>
+                                    <p:outputLabel value="Procedencia:"/>
+                                    <p:autoComplete id="idubi"  value="#{empleadoC.empleado.autUbi}" completeMethod="#{empleadoC.completeTextUbigeo}"/>
 
-                            <p:outputLabel value="Usuario:"/>
-                            <p:inputText value="#{empleadoC.empleado.USUEMP}" maxlength="50" />
-                            <p:outputLabel value="Tipo de usuario:"/>
-                            <p:inputText value="#{empleadoC.empleado.TIPEMP}" maxlength="50"  />
-                            <p:outputLabel value="Contraseña:"/>
-                            <p:password value="#{empleadoC.empleado.PWDEMP}" maxlength="50" requiredMessage=""/>
-                        </p:panelGrid>
+                                    <p:outputLabel value="Usuario:"/>
+                                    <p:inputText value="#{empleadoC.empleado.USUEMP}" maxlength="50" />
+                                    <p:outputLabel value="Tipo de usuario:"/>
+                                    <p:inputText value="#{empleadoC.empleado.TIPEMP}" maxlength="50"  />
+                                    <p:outputLabel value="Contraseña:"/>
+                                    <p:password value="#{empleadoC.empleado.PWDEMP}" maxlength="50" requiredMessage=""/>
+                                </p:panelGrid>
 
-                        <p:commandButton value="#{empleadoC.accionEmp}" 
-                                         actionListener="#{empleadoC.operarEmpleado()}" 
-                                         update="dlgDatos :form:dtTable"/>
-                        <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>                        
-                    </h:form>
-                </p:dialog>
+                                <p:commandButton value="#{empleadoC.accionEmp}" 
+                                                 actionListener="#{empleadoC.operarEmpleado()}" 
+                                                 update="dlgDatos :form:dtTable"/>
+                                <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>                        
+                            </h:form>
+                        </p:dialog>
 
-                <!--FORMULARIO PARA REGISTRAR LOS DATOS DEL EMPLEADO-->
-                <p:dialog showEffect="explode" modal="false" hideEffect="explode" id="dlgRegistrar" widgetVar="wdlgRegistrar">
-                    <h3 align="center" > <b><i>INGRESAR DATOS:</i></b></h3>
-                    <h:form>
-                        <p:panelGrid columns="2">
-                            <p:outputLabel value="Nombre(s):"/>
-                            <p:inputText value="#{empleadoC.empleado.NOMEMP}" maxlength="50" required="true" requiredMessage=""/>
-                            <p:outputLabel value="Apellidos:"/>
-                            <p:inputText value="#{empleadoC.empleado.APEEMP}" maxlength="50" required="true" requiredMessage=""/>
-                            <p:outputLabel value="N° de DNI:"/>
-                            <p:inputText value="#{empleadoC.empleado.DNIEMP}" maxlength="8" required="true" requiredMessage="Ingrese N° de DNI">
-                                <p:keyFilter regEx="/[0-9_]/i"/> 
-                            </p:inputText>
-                            <p:outputLabel value="Dirección:"/>
-                            <p:inputText value="#{empleadoC.empleado.DIREMP}" maxlength="50" required="true" requiredMessage=""/>
-                            <p:outputLabel value="Sexo:"/>
-                            <p:selectOneRadio id="console" value="#{empleadoC.empleado.SEXEMP}">
-                                <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
-                                <f:selectItem itemLabel="Femenino" itemValue="Femenino" />
-                            </p:selectOneRadio>
-                            <p:outputLabel value="Procedencia:"/>
-                            <p:autoComplete id="idubi"  value="#{empleadoC.empleado.autUbi}" completeMethod="#{empleadoC.completeTextUbigeo}"/>
+                        <!--FORMULARIO PARA REGISTRAR LOS DATOS DEL EMPLEADO-->
+                        <p:dialog showEffect="explode" modal="false" hideEffect="explode" id="dlgRegistrar" widgetVar="wdlgRegistrar">
+                            <h3 align="center" > <b><i>INGRESAR DATOS:</i></b></h3>
+                            <h:form>
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="Nombre(s):"/>
+                                    <p:inputText value="#{empleadoC.empleado.NOMEMP}" maxlength="50" required="true" requiredMessage=""/>
+                                    <p:outputLabel value="Apellidos:"/>
+                                    <p:inputText value="#{empleadoC.empleado.APEEMP}" maxlength="50" required="true" requiredMessage=""/>
+                                    <p:outputLabel value="N° de DNI:"/>
+                                    <p:inputText value="#{empleadoC.empleado.DNIEMP}" maxlength="8" required="true" requiredMessage="Ingrese N° de DNI">
+                                        <p:keyFilter regEx="/[0-9_]/i"/> 
+                                    </p:inputText>
+                                    <p:outputLabel value="Dirección:"/>
+                                    <p:inputText value="#{empleadoC.empleado.DIREMP}" maxlength="50" required="true" requiredMessage=""/>
+                                    <p:outputLabel value="Sexo:"/>
+                                    <p:selectOneRadio id="console" value="#{empleadoC.empleado.SEXEMP}">
+                                        <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+                                        <f:selectItem itemLabel="Femenino" itemValue="Femenino" />
+                                    </p:selectOneRadio>
+                                    <p:outputLabel value="Procedencia:"/>
+                                    <p:autoComplete id="idubi"  value="#{empleadoC.empleado.autUbi}" completeMethod="#{empleadoC.completeTextUbigeo}"/>
 
-                            <p:outputLabel value="Usuario:"/>
-                            <p:inputText value="#{empleadoC.empleado.USUEMP}" maxlength="50" />
-                            <p:outputLabel value="Tipo de usuario:"/>
-                            <p:inputText value="#{empleadoC.empleado.TIPEMP}" maxlength="50"  />
-                            <p:outputLabel value="Contraseña:"/>
-                            <p:password value="#{empleadoC.empleado.PWDEMP}" maxlength="50" required="true" requiredMessage=""/>
-                        </p:panelGrid>
+                                    <p:outputLabel value="Usuario:"/>
+                                    <p:inputText value="#{empleadoC.empleado.USUEMP}" maxlength="50" />
+                                    <p:outputLabel value="Tipo de usuario:"/>
+                                    <p:inputText value="#{empleadoC.empleado.TIPEMP}" maxlength="50"  />
+                                    <p:outputLabel value="Contraseña:"/>
+                                    <p:password value="#{empleadoC.empleado.PWDEMP}" maxlength="50" required="true" requiredMessage=""/>
+                                </p:panelGrid>
 
-                        <p:commandButton value="Registrar" 
-                                         actionListener="#{empleadoC.registrar()}" 
-                                         oncomplete=" if(args &amp;&amp; !args.validationFailed)PF('wdlgRegistrar').hide();"
-                                         update="dlgRegistrar :form:dtTable"/>                                     
-                        <p:commandButton value="Cancelar" immediate="true" oncomplete=" PF('wdlgRegistrar').hide();"/>
-                    </h:form>
-                </p:dialog>
-            </p:dataTable>
-        </h:form>
+                                <p:commandButton value="Registrar" 
+                                                 actionListener="#{empleadoC.registrar()}" 
+                                                 oncomplete=" if(args &amp;&amp; !args.validationFailed)PF('wdlgRegistrar').hide();"
+                                                 update="dlgRegistrar :form:dtTable"/>                                     
+                                <p:commandButton value="Cancelar" immediate="true" oncomplete=" PF('wdlgRegistrar').hide();"/>
+                            </h:form>
+                        </p:dialog>
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 

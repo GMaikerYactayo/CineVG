@@ -10,30 +10,33 @@
     </h:head>
     <p:growl id="growl" showDetail="true" sticky="true"/>
     <body>
-    <h:form>
-        <h:form id="agregarPelicula">
-            <p:panelGrid columns="4">
-                <h:outputLabel for="nombre" value="NOMBRE"/>
-                <p:inputText id="nombre" value="#{pelicula.NOMPEL}" 
-                             placeholder="INGRESAR NOMBRES" 
-                             required="true"
-                             requiredMessage="SE REQUIERE NOMBRE">
-                </p:inputText>
+    <ui:composition template="../Menu/Menu.xhtml">
+        <ui:define name="menu">
+            <h:form>
+                <h:form id="agregarPelicula">
+                    <p:panelGrid columns="4">
+                        <h:outputLabel for="nombre" value="NOMBRE"/>
+                        <p:inputText id="nombre" value="#{pelicula.NOMPEL}" 
+                                     placeholder="INGRESAR NOMBRES" 
+                                     required="true"
+                                     requiredMessage="SE REQUIERE NOMBRE">
+                        </p:inputText>
 
-                <h:outputLabel for="tipo" value="TIPO"/>
-                <p:inputText id="tipo" value="#{pelicula.TIPPEL}" 
-                             placeholder="INGRESAR APELLIDOS" 
-                             required="true"
-                             requiredMessage="SE REQUIERE APELLIDO">
-                </p:inputText>
+                        <h:outputLabel for="tipo" value="TIPO"/>
+                        <p:inputText id="tipo" value="#{pelicula.TIPPEL}" 
+                                     placeholder="INGRESAR APELLIDOS" 
+                                     required="true"
+                                     requiredMessage="SE REQUIERE APELLIDO">
+                        </p:inputText>
 
-                <h:outputLabel for="duracion" value="DURACION"/>
-                <p:inputText id="duracion" value="#{pelicula.DURPEL}" 
-                             placeholder="INGRESAR APELLIDOS" 
-                             required="true"
-                             requiredMessage="SE REQUIERE APELLIDO">
-                </p:inputText>
+                        <h:outputLabel for="duracion" value="DURACION"/>
+                        <p:inputText id="duracion" value="#{pelicula.DURPEL}" 
+                                     placeholder="INGRESAR APELLIDOS" 
+                                     required="true"
+                                     requiredMessage="SE REQUIERE APELLIDO">
+                        </p:inputText>
 
+<<<<<<< HEAD
                 <h:outputLabel for="idiosa" value="IDIOMA"/>
                 <p:inputText id="idioma" value="#{pelicula.LENPEL}" 
                              placeholder="INGRESAR APELLIDOS" 
@@ -49,120 +52,146 @@
             <p:commandButton class="btn btn-primary mt-2 mt-xl-0" onclick="PF('wdlgAgregarP').show();" value="Agregar Pelicula"/>
         </div>
     </h:form>
+=======
+                        <h:outputLabel for="idiosa" value="IDIOMA"/>
+                        <p:inputText id="idioma" value="#{pelicula.LENPEL}" 
+                                     placeholder="INGRESAR APELLIDOS" 
+                                     required="true"
+                                     requiredMessage="SE REQUIERE APELLIDO">
+                        </p:inputText>
+                    </p:panelGrid>
+                    <p:commandButton value="REGISTRAR" 
+                                     actionListener="#{peliculaC.registrarPelicula()}" 
+                                     update=":ListPel:pelicula :growl" />
+                </h:form>
+                <div class="d-flex justify-content-between align-items-end flex-wrap">
+                    <p:commandButton class="btn btn-primary mt-2 mt-xl-0" onclick="PF('wdlgAgregarP').show();" value="Agregar Pelicula"/>
+                </div>
+            </h:form>
+>>>>>>> origin/master
 
 
 
-    <div class="row">
-        <div class="col-md-12 stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-title">Lista de Peliculas</p>
-                    <div class="table-responsive">
-                        <h:form id="ListPel">
-                            <p:dataTable id="pelicula" class="table"
-                                         value="#{peliculaC.listadoPel}" 
-                                         var="pelicula"
-                                         rowKey="#{peliculaC.listadoPel}"
-                                         filteredValue="#{peliculaC.listadoPel}"
-                                         selection="#{peliculaC.listadoPel}"
-                                         selectionMode="single"
-                                         paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                                         editable = "true"
-                                         rows = "10"
-                                         paginator="true" >
+            <div class="row">
+                <div class="col-md-12 stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-title">Lista de Peliculas</p>
+                            <div class="table-responsive">
+                                <h:form id="ListPel">
+                                    <p:dataTable id="pelicula" class="table"
+                                                 value="#{peliculaC.listadoPel}" 
+                                                 var="pelicula"
+                                                 rowKey="#{peliculaC.listadoPel}"
+                                                 filteredValue="#{peliculaC.listadoPel}"
+                                                 selection="#{peliculaC.listadoPel}"
+                                                 selectionMode="single"
+                                                 paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                                 editable="true"
+                                                 rows="10"
+                                                 paginator="true" >
 
-                                <p:column headerText="N°">
-                                    <h:outputText value="#{pelicula.IDPEL}"/>
-                                </p:column>
+                                        <p:column headerText="N°">
+                                            <h:outputText value="#{pelicula.IDPEL}"/>
+                                        </p:column>
 
-                                <p:column headerText="NOMBRE COMPLETO">
-                                    <h:outputText value="#{pelicula.NOMPEL}"/>
-                                </p:column>
+                                        <p:column headerText="NOMBRE COMPLETO">
+                                            <h:outputText value="#{pelicula.NOMPEL}"/>
+                                        </p:column>
 
-                                <p:column headerText="NOMBRE COMPLETO">
-                                    <h:outputText value="#{pelicula.TIPPEL}"/>
-                                </p:column>
+                                        <p:column headerText="NOMBRE COMPLETO">
+                                            <h:outputText value="#{pelicula.TIPPEL}"/>
+                                        </p:column>
 
-                                <p:column headerText="SEXO">
-                                    <h:outputText value="#{pelicula.DURPEL}"/>
-                                </p:column>
+                                        <p:column headerText="SEXO">
+                                            <h:outputText value="#{pelicula.    DURPEL}"/>
+                                        </p:column>
 
-                                <p:column headerText="FECHA DE NACIMIENTO">
-                                    <h:outputText value="#{pelicula.LENPEL}"/>
-                                </p:column>
-                            </p:dataTable>
+                                        <p:column headerText="FECHA DE NACIMIENTO">
+                                            <h:outputText value="#{pelicula.LENPEL}"/>
+                                        </p:column>
+                                        <f:facet name="header">
+                                            <div style="float:right;padding-top: 5px;">
+                                                <h:commandLink actionListener="#{peliculaC.REPORTEPELICULA(idcli)}">
+                                                    <p:graphicImage url="../../recursos/images/favicon.png" width="50" title="Descargar Reporte"/>
+                                                </h:commandLink>
+                                            </div>
+                                        </f:facet   >
+                                    </p:dataTable>
 
-                            <p:contextMenu for="pelicula">
-                                <p:menuitem value="EDITAR"  icon="pi pi-search" oncomplete="PF('wdlgPelicula').show()"/>
-                                <p:menuitem value="INHABLITAR" update="pelicula" icon="pi pi-times" />
-                            </p:contextMenu>
+                                    <p:contextMenu for="pelicula">
+                                        <p:menuitem value="EDITAR"  icon="pi pi-search" oncomplete="PF('wdlgPelicula').show()"/>
+                                        <p:menuitem value="INHABLITAR" update="pelicula" icon="pi pi-times" />
+                                    </p:contextMenu>
 
-                        </h:form>
+                                </h:form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
 
-    <script type="text/javascript">
-        PrimeFaces.locales['es'] = {
-            closeText: 'Cerrar',
-            prevText: 'Anterior',
-            nextText: 'Siguiente',
-            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            monthNamesShort: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
-            dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-            weekHeader: 'Semana',
-            firstDay: 1,
-            isRTL: false,
-            showMonthAfterYear: false,
-            yearSuffix: '',
-            timeOnlyTitle: 'Sólo hora',
-            timeText: 'Tiempo',
-            hourText: 'Hora',
-            minuteText: 'Minuto',
-            secondText: 'Segundo',
-            currentText: 'Fecha actual',
-            ampm: false,
-            month: 'Mes',
-            week: 'Semana',
-            day: 'Día',
-            allDayText: 'Todo el día'
-        };
+            <script type="text/javascript">
+                PrimeFaces.locales['es'] = {
+                    closeText: 'Cerrar',
+                    prevText: 'Anterior',
+                    nextText: 'Siguiente',
+                    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                    monthNamesShort: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                    dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                    dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                    dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+                    weekHeader: 'Semana',
+                    firstDay: 1,
+                    isRTL: false,
+                    showMonthAfterYear: false,
+                    yearSuffix: '',
+                    timeOnlyTitle: 'Sólo hora',
+                    timeText: 'Tiempo',
+                    hourText: 'Hora',
+                    minuteText: 'Minuto',
+                    secondText: 'Segundo',
+                    currentText: 'Fecha actual',
+                    ampm: false,
+                    month: 'Mes',
+                    week: 'Semana',
+                    day: 'Día',
+                    allDayText: 'Todo el día'
+                };
 
-    </script>
+            </script>
 
-    <script type="text/javascript">
-        PrimeFaces.locales['es'] = {
-            closeText: 'Cerrar',
-            prevText: 'Anterior',
-            nextText: 'Siguiente',
-            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            monthNamesShort: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
-            dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-            weekHeader: 'Semana',
-            firstDay: 1,
-            isRTL: false,
-            showMonthAfterYear: false,
-            yearSuffix: '',
-            timeOnlyTitle: 'Sólo hora',
-            timeText: 'Tiempo',
-            hourText: 'Hora',
-            minuteText: 'Minuto',
-            secondText: 'Segundo',
-            currentText: 'Fecha actual',
-            ampm: false,
-            month: 'Mes',
-            week: 'Semana',
-            day: 'Día',
-            allDayText: 'Todo el día'
-        };
+            <script type="text/javascript">
+                PrimeFaces.locales['es'] = {
+                    closeText: 'Cerrar',
+                    prevText: 'Anterior',
+                    nextText: 'Siguiente',
+                    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                    monthNamesShort: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                    dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                    dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                    dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+                    weekHeader: 'Semana',
+                    firstDay: 1,
+                    isRTL: false,
+                    showMonthAfterYear: false,
+                    yearSuffix: '',
+                    timeOnlyTitle: 'Sólo hora',
+                    timeText: 'Tiempo',
+                    hourText: 'Hora',
+                    minuteText: 'Minuto',
+                    secondText: 'Segundo',
+                    currentText: 'Fecha actual',
+                    ampm: false,
+                    month: 'Mes',
+                    week: 'Semana',
+                    day: 'Día',
+                    allDayText: 'Todo el día'
+                };
 
-    </script>
+            </script>
+        </ui:define>
+    </ui:composition>
 </body>
 </html>
