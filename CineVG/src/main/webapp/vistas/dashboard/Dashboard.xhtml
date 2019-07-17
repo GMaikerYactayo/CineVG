@@ -8,9 +8,11 @@
 
     </h:head>
     <h:body>
-        <ui:composition template="../plantilla/Plantilla.xhtml">
-            <ui:define name="vista">
-                <p:button value="demoo"/>
+        <ui:composition template="../Menu/Menu.xhtml">
+            <ui:define name="menu">
+                <h:form >
+                    <p:chart type="bar" model="#{peliculaC.barra}" style="width:500px;height:300px"/>
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>

@@ -5,10 +5,13 @@
  */
 package control;
 
+import Reportes.report;
 import dao.EmpleadoImpl;
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -101,6 +104,18 @@ public class EmpleadoC implements Serializable {
             listar();
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro", "Eliminado"));
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    public void REPORTEEMPLEADO(String idcli) throws Exception {
+        report reportEMPLEADO = new report();
+        try {
+            Map<String, Object> parameters = new HashMap(); // Libro de parametros
+            parameters.put(null, idcli); //Insertamos un parametro
+            reportEMPLEADO.exportarEMPLEADO(parameters); //Pido exportar Reporte con los parametros
+//            report.exportarPDF2(parameters);
         } catch (Exception e) {
             throw e;
         }

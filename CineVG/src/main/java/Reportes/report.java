@@ -16,7 +16,7 @@ public class report extends Conexion {
 
     public void exportarCLIENTE(Map parameters) throws JRException, IOException, Exception {
         this.conectar();
-        File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("reportes/CLIENTE1.jasper"));
+        File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("reportes/CineVG_Cliente.jasper"));
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(), parameters, this.getCn());
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         response.addHeader("Content-disposition", "attachment; filename=CLIENTE.pdf");
@@ -26,5 +26,44 @@ public class report extends Conexion {
         }
         FacesContext.getCurrentInstance().responseComplete();
     }
-    
+
+    public void exportarEMPLEADO(Map parameters) throws JRException, IOException, Exception {
+        this.conectar();
+        File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("reportes/CineVG_Empleados.jasper"));
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(), parameters, this.getCn());
+        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        response.addHeader("Content-disposition", "attachment; filename=EMPLEADO.pdf");
+        try (ServletOutputStream stream = response.getOutputStream()) {
+            JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
+            stream.flush();
+        }
+        FacesContext.getCurrentInstance().responseComplete();
+    }
+
+    public void exportarPELICULA(Map parameters) throws JRException, IOException, Exception {
+        this.conectar();
+        File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("reportes/CineVG_Pelicula.jasper"));
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(), parameters, this.getCn());
+        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        response.addHeader("Content-disposition", "attachment; filename=PELICULA.pdf");
+        try (ServletOutputStream stream = response.getOutputStream()) {
+            JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
+            stream.flush();
+        }
+        FacesContext.getCurrentInstance().responseComplete();
+    }
+
+    public void exportarSALA(Map parameters) throws JRException, IOException, Exception {
+        this.conectar();
+        File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("reportes/CineVG_Sala.jasper"));
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(), parameters, this.getCn());
+        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+            response.addHeader("Content-disposition", "attachment; filename=SALA.pdf");
+        try (ServletOutputStream stream = response.getOutputStream()) {
+            JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
+            stream.flush();
+        }
+        FacesContext.getCurrentInstance().responseComplete();
+    }
+
 }

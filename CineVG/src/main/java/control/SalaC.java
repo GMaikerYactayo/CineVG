@@ -1,11 +1,14 @@
 package control;
 
+import Reportes.report;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import modelo.Sala;
 import dao.SalaImpl;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -87,6 +90,18 @@ public class SalaC implements Serializable {
             lista = dao.listar("'" + estado + "'");
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            throw e;
+        }
+    }
+    
+    public void REPORTESALA(String idcli) throws Exception {
+        report reportSALA = new report();
+        try {
+            Map<String, Object> parameters = new HashMap(); // Libro de parametros
+            parameters.put(null, idcli); //Insertamos un parametro
+            reportSALA.exportarSALA(parameters); //Pido exportar Reporte con los parametros
+//            report.exportarPDF2(parameters);
+        } catch (Exception e) {
             throw e;
         }
     }
