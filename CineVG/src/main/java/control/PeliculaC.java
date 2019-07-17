@@ -1,15 +1,18 @@
-package control;
+package controlador;
 
 import dao.DashboardImpl;
 import dao.PeliculaImpl;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import modelo.NPelicula;
 import modelo.Pelicula;
 import org.primefaces.model.chart.Axis;
@@ -23,6 +26,7 @@ import org.primefaces.model.chart.ChartSeries;
 public class PeliculaC implements Serializable {
 
     private Pelicula pelicula = new Pelicula();
+    private PeliculaImpl dao;
     private Pelicula selectedPelicula;
     private List<Pelicula> listadoPel;
     private BarChartModel barra;
@@ -46,8 +50,16 @@ public class PeliculaC implements Serializable {
         }
 
     }
-    
-     public void lstCantPeli() throws Exception {
+
+    public PeliculaC() {
+        PeliculaImpl dao = new PeliculaImpl();
+        pelicula = new Pelicula();
+        listadoPel = new ArrayList();
+
+    }
+
+    public void lstCantPeli() throws Exception {
+        System.out.println("eee");
         DashboardImpl dao;
         try {
             dao = new DashboardImpl();
@@ -57,8 +69,8 @@ public class PeliculaC implements Serializable {
             throw e;
         }
     }
-     
-         private void createBarras() {
+
+    private void createBarras() {
         try {
             barra = new BarChartModel();
             for (int i = 0; i < NPelicula.size(); i++) {
@@ -73,31 +85,27 @@ public class PeliculaC implements Serializable {
             barra = getBarra();
             barra.setTitle("NÚMERO DE PELÍCULAS POR GÉNERO");
             barra.setAnimate(true);
-            
+
             Axis yAxis = barra.getAxis(AxisType.Y);
             yAxis.setMax(30);
         } catch (Exception e) {
-            System.out.println("error" +e.getMessage());
+            System.out.println("error" + e.getMessage());
         }
     }
-    
-    
-    
+
     public void registrarPelicula() throws Exception {
-        PeliculaImpl dao;
         try {
             dao = new PeliculaImpl();
             dao.registrar(pelicula);
             listar();
+            limpiar();
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "registrando", "Cargando.."));
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
     public void modificar() throws Exception {
-        PeliculaImpl dao;
         try {
             dao = new PeliculaImpl();
             dao.modificar(pelicula);
@@ -105,15 +113,13 @@ public class PeliculaC implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Actualizando", "Cargando..."));
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
-    private void eliminar() throws Exception {
-        PeliculaImpl dao;
+    private void eliminar(Pelicula pel) throws Exception {
         try {
             dao = new PeliculaImpl();
-            dao.eliminar(pelicula);
+            dao.eliminar(pel);
             listar();
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminando", "completado..."));
@@ -123,7 +129,7 @@ public class PeliculaC implements Serializable {
     }
 
     public void listar() throws Exception {
-        PeliculaImpl dao;
+        System.out.println("");
         try {
             dao = new PeliculaImpl();
             listadoPel = dao.listar();
@@ -171,10 +177,5 @@ public class PeliculaC implements Serializable {
     public void setNPelicula(List<NPelicula> NPelicula) {
         this.NPelicula = NPelicula;
     }
-
-
-
-    
-    
 
 }

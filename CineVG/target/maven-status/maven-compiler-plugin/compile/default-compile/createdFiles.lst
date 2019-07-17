@@ -3,7 +3,6 @@ modelo\Pelicula.class
 control\SalaC.class
 dao\VentaImpl.class
 modelo\Sala.class
-control\PeliculaC.class
 control\LoginC.class
 dao\DashboardImpl.class
 dao\EmpleadoImpl.class
@@ -18,6 +17,7 @@ control\EmpleadoC.class
 dao\ClienteImpl.class
 modelo\Cartelera.class
 services\ConvertirSexo.class
+controlador\PeliculaC.class
 modelo\NPelicula.class
 control\CarteleraC.class
 modelo\Venta.class

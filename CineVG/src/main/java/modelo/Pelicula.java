@@ -1,12 +1,11 @@
-
 package modelo;
 
 public class Pelicula {
 
     private String IDPEL;
     private String NOMPEL;
-    private String GENPEL; 
-    private String RESTPEL; 
+    private String GENPEL;
+    private String RESTPEL;
     private String TIPPEL;
     private String LENPEL;
     private String DURPEL;
@@ -37,6 +36,14 @@ public class Pelicula {
 
     public void setGENPEL(String GENPEL) {
         this.GENPEL = GENPEL;
+    }
+
+    public String getRESTPEL() {
+        return RESTPEL;
+    }
+
+    public void setRESTPEL(String RESTPEL) {
+        this.RESTPEL = RESTPEL;
     }
 
     public String getTIPPEL() {
@@ -95,14 +102,4 @@ public class Pelicula {
         this.FOTPEL = FOTPEL;
     }
 
-    public String getRESTPEL() {
-        return RESTPEL;
-    }
-
-    public void setRESTPEL(String RESTPEL) {
-        this.RESTPEL = RESTPEL;
-    }
-
-
- 
 }

@@ -25,10 +25,10 @@ public class PeliculaImpl extends Conexion implements ICRUD<Pelicula> {
             ps.setString(7, pelicula.getHORPEL());
             ps.setString(8, pelicula.getFECPEL());
             ps.setString(9, pelicula.getFOTPEL());
-
-        } catch (Exception e) {
-        System.out.println("Error: " + e);
-        e.printStackTrace();
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+            throw e;
         } finally {
             this.Cerrar();
         }
@@ -39,7 +39,7 @@ public class PeliculaImpl extends Conexion implements ICRUD<Pelicula> {
         try {
             this.conectar();
             String sql = "UPDATE PELICULA SET NOMPEL = ?,GENPEL=?,RESTPEL=?,TIPPEL=?,LENPEL=?,DURPEL=?,HORPEL=?,FECPEL=?,ESTPEL=?,FOTPEL=? WHERE IDPEL LIKE ?";
-            PreparedStatement ps = this.getCn().prepareCall(sql);
+            PreparedStatement ps = this.getCn().prepareStatement(sql);
             ps.setString(1, pelicula.getNOMPEL());
             ps.setString(2, pelicula.getGENPEL());
             ps.setString(3, pelicula.getRESTPEL());
@@ -52,8 +52,9 @@ public class PeliculaImpl extends Conexion implements ICRUD<Pelicula> {
             ps.setString(10, pelicula.getFOTPEL());
             ps.setString(11, pelicula.getIDPEL());
             ps.executeUpdate();
-
-        } catch (Exception e) {
+            ps.close();
+        } catch (SQLException e) {
+             System.out.println("error en update" + e.getMessage());
             throw e;
         } finally {
             this.Cerrar();
@@ -65,10 +66,9 @@ public class PeliculaImpl extends Conexion implements ICRUD<Pelicula> {
         try {
             this.conectar();
             String sql = "delete from PELICULA where IDCAR=?";
-            PreparedStatement ps = this.getCn().prepareCall(sql);
+            PreparedStatement ps = this.getCn().prepareStatement(sql);
             ps.setString(1, pelicula.getIDPEL());
             ps.executeUpdate();
-            ps.close();
         } catch (SQLException e) {
             throw e;
         } finally {
@@ -79,15 +79,15 @@ public class PeliculaImpl extends Conexion implements ICRUD<Pelicula> {
     @Override
     public List<Pelicula> listar() throws Exception {
         List<Pelicula> listado;
-        Pelicula car;
+        ResultSet rs;
         try {
-            this.conectar();
+            conectar();
             String sql = "select * from PELICULA WHERE ESTPEL='A'";
             listado = new ArrayList();
-            Statement st = this.getCn().createStatement();
-            ResultSet rs = st.executeQuery(sql);
+            PreparedStatement st = this.getCn().prepareCall(sql);
+            rs = st.executeQuery(sql);
             while (rs.next()) {
-                car = new Pelicula();
+                Pelicula car = new Pelicula();
                 car.setIDPEL(rs.getString("IDPEL"));
                 car.setNOMPEL(rs.getString("NOMPEL"));
                 car.setGENPEL(rs.getString("GENPEL"));
@@ -100,10 +100,7 @@ public class PeliculaImpl extends Conexion implements ICRUD<Pelicula> {
                 car.setESTPEL(rs.getString("ESTPEL"));
                 car.setFOTPEL(rs.getString("FOTPEL"));
                 listado.add(car);
-                          
             }
-            rs.close();
-            st.close();
         } catch (SQLException e) {
             throw e;
         } finally {
